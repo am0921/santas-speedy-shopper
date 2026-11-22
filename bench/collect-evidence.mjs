@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // Copies the raw measurement data behind the README into evidence/ (local paths removed).
 // Usage: node bench/collect-evidence.mjs
-import { copyFileSync, existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readdirSync, readFileSync, unlinkSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -47,6 +47,7 @@ for (const [from, to] of Object.entries(direct)) if (put(from, to)) n++;
 // Recorded web chat attempts (record/record.mjs): result.json and the final screenshot.
 const rec = join(root, "record", "out");
 let attempts = 0;
+const kept = new Set();
 for (const d of existsSync(rec) ? readdirSync(rec) : []) {
   const src = join(rec, d, "result.json");
   if (!existsSync(src)) continue;
@@ -56,6 +57,11 @@ for (const d of existsSync(rec) ? readdirSync(rec) : []) {
   const id = String(r.startedAt ?? d).replace(/[:.]/g, "-");
   mkdirSync(join(out, "recorded"), { recursive: true });
   writeFileSync(join(out, "recorded", `${id}.json`), JSON.stringify({ ...r, recordDir: d }, null, 1) + "\n");
+  kept.add(`${id}.json`);
   attempts++;
+}
+// Drop entries whose attempt folder no longer exists in record/out.
+for (const f of existsSync(join(out, "recorded")) ? readdirSync(join(out, "recorded")) : []) {
+  if (!kept.has(f)) unlinkSync(join(out, "recorded", f));
 }
 console.log(`evidence/: gateway-runs.jsonl, ${n - 1} direct files, ${attempts} recorded attempts`);

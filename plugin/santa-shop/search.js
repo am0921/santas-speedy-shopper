@@ -70,15 +70,23 @@ export async function checkLink(url, signal) {
   if (u.protocol !== "https:" || !known || !u.pathname.startsWith("/products/")) {
     return { ok: false, reason: "not a product page of a known store" };
   }
-  try {
-    const res = await fetch(u, {
-      method: "HEAD",
-      headers: { "user-agent": UA, accept: "text/html" },
-      redirect: "follow",
-      signal: signal ?? AbortSignal.timeout(8000),
-    });
-    return res.ok ? { ok: true, status: res.status } : { ok: false, status: res.status, reason: `HTTP ${res.status}` };
-  } catch (err) {
-    return { ok: false, reason: err.name === "TimeoutError" ? "timeout" : "network error" };
+  // Storefronts throttle bursts with 429; wait briefly and ask again (twice at most).
+  let last = { ok: false, reason: "no attempt" };
+  for (const waitMs of [0, 600, 1800]) {
+    if (waitMs) await new Promise((resolve) => setTimeout(resolve, waitMs));
+    try {
+      const res = await fetch(u, {
+        method: "HEAD",
+        headers: { "user-agent": UA, accept: "text/html" },
+        redirect: "follow",
+        signal: signal ?? AbortSignal.timeout(8000),
+      });
+      if (res.ok) return { ok: true, status: res.status };
+      last = { ok: false, status: res.status, reason: `HTTP ${res.status}` };
+      if (res.status !== 429 && res.status < 500) return last;
+    } catch (err) {
+      last = { ok: false, reason: err.name === "TimeoutError" ? "timeout" : "network error" };
+    }
   }
+  return last;
 }

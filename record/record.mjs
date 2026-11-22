@@ -122,6 +122,8 @@ function probe() {
     assistantGroups: groups.length,
     badgeText: badge?.textContent?.trim() ?? null,
     summaryText: summary?.textContent?.trim() ?? null,
+    badgeTitle: badge?.getAttribute("title") ?? null,
+    summaryTitle: summary?.getAttribute("title") ?? null,
     liveText: live?.textContent?.trim() ?? null,
     running: stop || working || !!live,
     answerText: textEls.map((e) => e.innerText.trim()).filter(Boolean).join("\n"),
@@ -201,8 +203,11 @@ async function attempt(i, browser) {
     if (createMode === "ui") sessionKey = await page.evaluate(() => location.pathname);
     result.url = page.url().split("#")[0];
     if (expandTool) {
-      const step = page.locator(".chat-group.assistant").last().getByRole("button", { name: /gifts/i }).first();
+      // Open the run's tool steps (the UI's own "N other operations" toggle) so the live
+      // searches and link checks are visible in the final frame.
+      const step = page.locator(".chat-group.assistant").last().getByText(/other operations?|^Gifts?$|^Verify$/i).first();
       if (await step.isVisible().catch(() => false)) await step.click().catch(() => {});
+      await sleep(400);
     }
     // Reveal the per-response badge (it shows on hover, the UI's own behaviour).
     const lastGroup = page.locator(".chat-group.assistant").last();
@@ -213,9 +218,16 @@ async function attempt(i, browser) {
     Object.assign(result, {
       badgeText: s.badgeText,
       summaryText: s.summaryText,
+      badgeTitle: s.badgeTitle,
+      summaryTitle: s.summaryTitle,
       answerText: s.answerText,
       links: s.links,
-      ...(({ mean, p90 }) => ({ meanTps: mean, p90Tps: p90 }))(parseBadge(s.badgeText)),
+      // Reported number = the session readout next to the composer: the mean over the run's
+      // model calls, identical to the session history. Right after a live run the per-response
+      // badge counts a turn with N parallel tool calls N times (after a reload it shows the
+      // same value as the session readout), so it is kept only as responseBadge*.
+      ...(({ mean, p90 }) => ({ meanTps: mean, p90Tps: p90 }))(parseBadge(s.summaryText ?? s.badgeText)),
+      ...(({ mean, p90 }) => ({ responseBadgeMean: mean, responseBadgeP90: p90 }))(parseBadge(s.badgeText)),
     });
     await page.screenshot({ path: join(tmpDir, "final.png"), fullPage: true });
     result.ok = result.meanTps != null && result.links.length >= 5;

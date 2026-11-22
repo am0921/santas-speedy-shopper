@@ -7,8 +7,8 @@ const body = { messages: [{ role: "user", content: "Reply with exactly: OK" }], 
 const end = Date.now() + maxMin * 60_000;
 let calm = 0;
 while (Date.now() < end) {
-  const r = await runOnce(body);
-  const q = r.ok ? r.time_info.queue_time : null;
+  const r = await runOnce(body).catch((e) => ({ ok: false, status: e.message }));
+  const q = r.ok ? (r.time_info?.queue_time ?? Infinity) : null;
   calm = r.ok && q <= maxQueue ? calm + 1 : 0;
   console.log(new Date().toLocaleTimeString("ja-JP"), r.ok ? `ok queue=${q.toFixed(2)}s` : `HTTP ${r.status}`, `calm=${calm}`);
   if (calm >= 2) process.exit(0);

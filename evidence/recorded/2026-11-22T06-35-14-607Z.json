@@ -1,0 +1,49 @@
+{
+ "ok": true,
+ "agent": "santa",
+ "createMode": "rpc",
+ "startedAt": "2026-11-22T06:35:14.607Z",
+ "prompt": "Find five Christmas gifts from real shopping websites: puravida christmas, colourpop holiday, leatherman wave, brooklinen robe, stanley tumbler.",
+ "sessionKey": "agent:santa:rec-mwrgpwz3",
+ "url": "http://127.0.0.1:19789/chat/santa/rec-mwrgpwz3",
+ "badgeText": "957 tok/s mean · 979 p90 (server)",
+ "summaryText": "1,081 tok/s mean · 1,423 p90 (server)",
+ "meanTps": 1081,
+ "p90Tps": 1423,
+ "answerText": "Under the Mistletoe Bracelet $4.80 https://www.puravidabracelets.com/products/red-green-white-bracelet\nColour Me Merry $99.00 https://colourpop.com/products/colour-me-merry-advent-calendar-2026\nWave® Plus $129.95 https://www.leatherman.com/products/wave\nSuper-Plush Robe $139.00-$149.00 https://www.brooklinen.com/products/super-plush-robe\nThe Everyday Tumbler, 20 OZ $26.25-$35.00 https://www.stanley1913.com/products/the-everyday-tumbler-20-oz",
+ "links": [
+  "https://www.puravidabracelets.com/products/red-green-white-bracelet",
+  "https://colourpop.com/products/colour-me-merry-advent-calendar-2026",
+  "https://www.leatherman.com/products/wave",
+  "https://www.brooklinen.com/products/super-plush-robe",
+  "https://www.stanley1913.com/products/the-everyday-tumbler-20-oz"
+ ],
+ "calls": [
+  {
+   "tokens": 215,
+   "ms": 219.6,
+   "tps": 979
+  },
+  {
+   "tokens": 251,
+   "ms": 298.01,
+   "tps": 842
+  },
+  {
+   "tokens": 169,
+   "ms": 118.76,
+   "tps": 1423
+  }
+ ],
+ "durationMs": 48359,
+ "error": null,
+ "badgeTitle": "mean: the average of 11 model calls' rates, 957 tok/s.\np90: 90% of 11 model calls ran at or below 979 tok/s.\nReported by the server: 2,499 tokens in 2.7 s of decode over 11 model calls.",
+ "summaryTitle": "mean: the average of 3 model calls' rates, 1,081 tok/s.\np90: 90% of 3 model calls ran at or below 1,423 tok/s.\nReported by the server: 635 tokens in 0.6 s of decode over 3 model calls.",
+ "responseBadgeMean": 957,
+ "responseBadgeP90": 979,
+ "video": "./record/out/20261122-063602-1081/video.mp4",
+ "trimmedLeadSeconds": 1.08,
+ "screenshot": "./record/out/20261122-063602-1081/final.png",
+ "dir": "./record/out/20261122-063602-1081",
+ "recordDir": "20261122-063602-1081"
+}

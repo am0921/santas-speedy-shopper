@@ -17,3 +17,5 @@ record/explore*.mjs
 .claude/
 .DS_Store
 SUBMISSION.md
+setup.log
+*.log

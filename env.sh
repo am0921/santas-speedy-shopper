@@ -1,5 +1,9 @@
 # Source this to work with the isolated, patched OpenClaw checkout of this project.
 # Keeps all OpenClaw state inside ./state (nothing is written to ~/.openclaw).
+if [ -z "$ZSH_VERSION" ]; then
+  echo 'env.sh must be sourced from zsh, for example: zsh -c "source ./env.sh && node bench/oc-run.mjs ..."' >&2
+  return 1 2>/dev/null || exit 1
+fi
 SANTA_ROOT="${0:A:h}"
 # OpenClaw at this commit needs Node >=24.22.1. Use mise's copy when present, otherwise the Node on PATH.
 if command -v mise >/dev/null 2>&1 && mise where node@24.22.3 >/dev/null 2>&1; then

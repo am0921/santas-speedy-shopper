@@ -81,7 +81,16 @@ export async function checkLink(url, signal) {
         redirect: "follow",
         signal: signal ?? AbortSignal.timeout(8000),
       });
-      if (res.ok) return { ok: true, status: res.status };
+      if (res.ok) {
+        // A store may redirect a retired product to a collection or its home page.
+        // Only a product page on the same store counts.
+        const final = new URL(res.url || u.href);
+        const bare = (h) => h.replace(/^www\./, "");
+        if (bare(final.hostname) !== bare(u.hostname) || !final.pathname.includes("/products/")) {
+          return { ok: false, status: res.status, reason: `redirected to ${final.hostname}${final.pathname}` };
+        }
+        return { ok: true, status: res.status };
+      }
       last = { ok: false, status: res.status, reason: `HTTP ${res.status}` };
       if (res.status !== 429 && res.status < 500) return last;
     } catch (err) {

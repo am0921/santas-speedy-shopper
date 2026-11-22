@@ -1,0 +1,47 @@
+{
+ "ok": true,
+ "agent": "santa",
+ "createMode": "rpc",
+ "startedAt": "2026-11-22T06:26:59.726Z",
+ "prompt": "Find five Christmas gifts from real shopping websites: puravida christmas, colourpop holiday, leatherman wave, brooklinen robe, stanley tumbler.",
+ "sessionKey": "agent:santa:rec-mwrgfb4e",
+ "url": "http://127.0.0.1:19789/chat/santa/rec-mwrgfb4e",
+ "badgeText": "1,042 tok/s mean · 1,138 p90 (server)",
+ "summaryText": "961 tok/s mean · 1,138 p90 (server)",
+ "meanTps": 1042,
+ "p90Tps": 1138,
+ "answerText": "Under the Mistletoe Bracelet $4.80 https://www.puravidabracelets.com/products/red-green-white-bracelet\nColour Me Merry $99.00 https://colourpop.com/products/colour-me-merry-advent-calendar-2026\nWave® Plus $129.95 https://www.leatherman.com/products/wave\nSuper-Plush Robe $139.00-$149.00 https://www.brooklinen.com/products/super-plush-robe\nThe Everyday Tumbler, 20 OZ $26.25-$35.00 https://www.stanley1913.com/products/the-everyday-tumbler-20-oz",
+ "links": [
+  "https://www.puravidabracelets.com/products/red-green-white-bracelet",
+  "https://colourpop.com/products/colour-me-merry-advent-calendar-2026",
+  "https://www.leatherman.com/products/wave",
+  "https://www.brooklinen.com/products/super-plush-robe",
+  "https://www.stanley1913.com/products/the-everyday-tumbler-20-oz"
+ ],
+ "calls": [
+  {
+   "tokens": 206,
+   "ms": 181.04,
+   "tps": 1138
+  },
+  {
+   "tokens": 266,
+   "ms": 264.22,
+   "tps": 1007
+  },
+  {
+   "tokens": 190,
+   "ms": 257.08,
+   "tps": 739
+  }
+ ],
+ "durationMs": 99242,
+ "error": null,
+ "badgeTitle": "mean: the average of 11 model calls' rates, 1,042 tok/s.\np90: 90% of 11 model calls ran at or below 1,138 tok/s.\nReported by the server: 2,550 tokens in 2.5 s of decode over 11 model calls.",
+ "summaryTitle": "mean: the average of 3 model calls' rates, 961 tok/s.\np90: 90% of 3 model calls ran at or below 1,138 tok/s.\nReported by the server: 662 tokens in 0.7 s of decode over 3 model calls.",
+ "video": "./record/out/20261122-062838-1042/video.mp4",
+ "trimmedLeadSeconds": 1.09,
+ "screenshot": "./record/out/20261122-062838-1042/final.png",
+ "dir": "./record/out/20261122-062838-1042",
+ "recordDir": "20261122-062838-1042"
+}

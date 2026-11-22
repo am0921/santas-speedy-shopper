@@ -1,17 +1,22 @@
-// Keeps the videos of the best N recorded attempts (by reported mean) and removes the
-// video files of the others; result.json and final.png are kept for every attempt.
-import { existsSync, readdirSync, readFileSync, unlinkSync } from "node:fs";
+// Keeps the videos of the best N complete attempts overall plus the best N without a
+// provider retry on screen, and removes the video files of the others. result.json and
+// final.png are kept for every attempt. Usage: node record/prune.mjs [N=12]
+import { existsSync, unlinkSync } from "node:fs";
 import { join } from "node:path";
-const out = new URL("./out/", import.meta.url).pathname;
+import { loadRuns, outDir } from "./runs.mjs";
+
 const keep = Number(process.argv[2] ?? 12);
-const runs = readdirSync(out)
-  .filter((d) => existsSync(join(out, d, "result.json")))
-  .map((d) => ({ d, r: JSON.parse(readFileSync(join(out, d, "result.json"), "utf8")) }))
-  .sort((a, b) => (b.r.ok ? b.r.meanTps : -1) - (a.r.ok ? a.r.meanTps : -1));
-runs.slice(keep).forEach(({ d }) => {
-  for (const f of ["video.mp4", "video.webm"]) if (existsSync(join(out, d, f))) unlinkSync(join(out, d, f));
-});
-const ok = runs.filter((x) => x.r.ok);
-const clean = ok.filter((x) => x.r.sawRetry === false && x.r.calls?.length === 3);
-console.log(`clean (no provider retry on screen, 3 calls): ${clean.length}, top: ${clean.slice(0, 5).map((x) => `${Math.round(x.r.meanTps)} (${x.d})`).join(", ")}`);
-console.log(`attempts=${runs.length} ok=${ok.length} top: ${ok.slice(0, 5).map((x) => `${Math.round(x.r.meanTps)} (${x.d})`).join(", ")}`);
+const runs = loadRuns();
+const ranked = runs.filter((x) => x.complete && x.tps != null).sort((a, b) => b.tps - a.tps);
+const keepers = new Set([
+  ...ranked.slice(0, keep).map((x) => x.d),
+  ...ranked.filter((x) => x.r.sawRetry === false).slice(0, keep).map((x) => x.d),
+]);
+for (const { d } of runs) {
+  if (keepers.has(d)) continue;
+  for (const f of ["video.mp4", "video.webm"]) if (existsSync(join(outDir, d, f))) unlinkSync(join(outDir, d, f));
+}
+const clean = ranked.filter((x) => x.r.sawRetry === false);
+console.log(
+  `attempts=${runs.length} complete=${ranked.length} top: ${ranked.slice(0, 4).map((x) => Math.round(x.tps)).join(", ")} | no retry on screen: ${clean.length}, top: ${clean.slice(0, 4).map((x) => Math.round(x.tps)).join(", ")}`,
+);

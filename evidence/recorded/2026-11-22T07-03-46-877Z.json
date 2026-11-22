@@ -1,0 +1,50 @@
+{
+ "ok": true,
+ "sawRetry": true,
+ "agent": "santa",
+ "createMode": "rpc",
+ "startedAt": "2026-11-22T07:03:46.877Z",
+ "prompt": "Find five Christmas gifts from real shopping websites: puravida christmas, colourpop holiday, leatherman wave, brooklinen robe, stanley tumbler.",
+ "sessionKey": "agent:santa:rec-mwrhqm65",
+ "url": "http://127.0.0.1:19789/chat/santa/rec-mwrhqm65",
+ "badgeText": "987 tok/s mean · 1,380 p90 (server)",
+ "summaryText": "889 tok/s mean · 1,380 p90 (server)",
+ "meanTps": 889,
+ "p90Tps": 1380,
+ "answerText": "These are all live and shoppable:\n\nUnder the Mistletoe Bracelet (Pura Vida) – $4.80\nhttps://www.puravidabracelets.com/products/red-green-white-bracelet\nColour Me Merry Advent Calendar 2026 (ColourPop) – $99.00\nhttps://colourpop.com/products/colour-me-merry-advent-calendar-2026\nWave® Plus (Leatherman) – $129.95\nhttps://www.leatherman.com/products/wave\nSuper-Plush Robe (Brooklinen) – $139.00–$149.00\nhttps://www.brooklinen.com/products/super-plush-robe\nThe Everyday Tumbler, 20 oz (Stanley) – $26.25–$35.00\nhttps://www.stanley1913.com/products/the-everyday-tumbler-20-oz",
+ "links": [
+  "https://www.puravidabracelets.com/products/red-green-white-bracelet",
+  "https://colourpop.com/products/colour-me-merry-advent-calendar-2026",
+  "https://www.leatherman.com/products/wave",
+  "https://www.brooklinen.com/products/super-plush-robe",
+  "https://www.stanley1913.com/products/the-everyday-tumbler-20-oz"
+ ],
+ "calls": [
+  {
+   "tokens": 194,
+   "ms": 280.07,
+   "tps": 693
+  },
+  {
+   "tokens": 247,
+   "ms": 179.02,
+   "tps": 1380
+  },
+  {
+   "tokens": 235,
+   "ms": 395.58,
+   "tps": 594
+  }
+ ],
+ "durationMs": 35813,
+ "error": null,
+ "badgeTitle": "mean: the average of 9 model calls' rates, 987 tok/s.\np90: 90% of 9 model calls ran at or below 1,380 tok/s.\nReported by the server: 1,999 tokens in 2.2 s of decode over 9 model calls.",
+ "summaryTitle": "mean: the average of 3 model calls' rates, 889 tok/s.\np90: 90% of 3 model calls ran at or below 1,380 tok/s.\nReported by the server: 676 tokens in 0.9 s of decode over 3 model calls.",
+ "responseBadgeMean": 987,
+ "responseBadgeP90": 1380,
+ "video": "./record/out/20261122-070422-889/video.mp4",
+ "trimmedLeadSeconds": 0.96,
+ "screenshot": "./record/out/20261122-070422-889/final.png",
+ "dir": "./record/out/20261122-070422-889",
+ "recordDir": "20261122-070422-889"
+}

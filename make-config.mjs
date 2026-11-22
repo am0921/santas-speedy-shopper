@@ -40,8 +40,8 @@ const config = {
       model: { primary: `cerebras/${MODEL}` },
       models: { [`cerebras/${MODEL}`]: { params } },
       thinkingDefault: thinking,
-      // Keep the run to the model calls the task needs: no bootstrap ritual, no
-      // workspace files in the prompt, no skills directory, no heartbeat turns,
+      // Keep the run to the model calls the task needs: no bootstrap ritual, only the
+      // agent's AGENTS.md in the prompt, no skills directory, no heartbeat turns,
       // no utility (title/narration) completions competing for the trial quota.
       skipBootstrap: true,
       contextInjection: inject,

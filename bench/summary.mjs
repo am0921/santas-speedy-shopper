@@ -23,8 +23,8 @@ const stats = (xs) => {
 const byLabel = new Map();
 for (const r of rows) (byLabel.get(r.label) ?? byLabel.set(r.label, []).get(r.label)).push(r);
 for (const [label, rs] of byLabel) {
-  const good = rs.filter((r) => r.speed && r.links?.length >= 5);
-  console.log(`\n${label}: ${rs.length} runs, ${good.length} complete (5+ links), ${rs.length - good.length} failed/incomplete`);
+  const good = rs.filter((r) => r.speed && new Set(r.links ?? []).size >= 5 && !/not verified|search failed/.test(r.final ?? ""));
+  console.log(`\n${label}: ${rs.length} runs, ${good.length} complete (five distinct links, none unverified), ${rs.length - good.length} failed/incomplete`);
   if (!good.length) continue;
   const calls = good.map((r) => r.speed.calls.length);
   console.log(`  model calls per run: ${[...new Set(calls)].sort().map((c) => `${c}x${calls.filter((x) => x === c).length}`).join(" ")}`);

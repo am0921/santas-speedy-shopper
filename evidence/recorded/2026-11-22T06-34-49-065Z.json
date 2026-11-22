@@ -1,0 +1,49 @@
+{
+ "ok": true,
+ "agent": "santa",
+ "createMode": "rpc",
+ "startedAt": "2026-11-22T06:34:49.065Z",
+ "prompt": "Find five Christmas gifts from real shopping websites: puravida christmas, colourpop holiday, leatherman wave, brooklinen robe, stanley tumbler.",
+ "sessionKey": "agent:santa:rec-mwrgpd9l",
+ "url": "http://127.0.0.1:19789/chat/santa/rec-mwrgpd9l",
+ "badgeText": "1,000 tok/s mean · 1,071 p90 (server)",
+ "summaryText": "915 tok/s mean · 1,071 p90 (server)",
+ "meanTps": 915,
+ "p90Tps": 1071,
+ "answerText": "Under the Mistletoe Bracelet $4.80 https://www.puravidabracelets.com/products/red-green-white-bracelet\nColour Me Merry $99.00 https://colourpop.com/products/colour-me-merry-advent-calendar-2026\nWave® Plus $129.95 https://www.leatherman.com/products/wave\nSuper-Plush Robe $139.00-$149.00 https://www.brooklinen.com/products/super-plush-robe\nThe Everyday Tumbler, 20 OZ $26.25-$35.00 https://www.stanley1913.com/products/the-everyday-tumbler-20-oz",
+ "links": [
+  "https://www.puravidabracelets.com/products/red-green-white-bracelet",
+  "https://colourpop.com/products/colour-me-merry-advent-calendar-2026",
+  "https://www.leatherman.com/products/wave",
+  "https://www.brooklinen.com/products/super-plush-robe",
+  "https://www.stanley1913.com/products/the-everyday-tumbler-20-oz"
+ ],
+ "calls": [
+  {
+   "tokens": 226,
+   "ms": 228.27,
+   "tps": 990
+  },
+  {
+   "tokens": 240,
+   "ms": 224.13,
+   "tps": 1071
+  },
+  {
+   "tokens": 166,
+   "ms": 242.45,
+   "tps": 685
+  }
+ ],
+ "durationMs": 20666,
+ "error": null,
+ "badgeTitle": "mean: the average of 10 model calls' rates, 1,000 tok/s.\np90: 90% of 10 model calls ran at or below 1,071 tok/s.\nReported by the server: 2,270 tokens in 2.3 s of decode over 10 model calls.",
+ "summaryTitle": "mean: the average of 3 model calls' rates, 915 tok/s.\np90: 90% of 3 model calls ran at or below 1,071 tok/s.\nReported by the server: 632 tokens in 0.7 s of decode over 3 model calls.",
+ "responseBadgeMean": 1000,
+ "responseBadgeP90": 1071,
+ "video": "./record/out/20261122-063509-915/video.mp4",
+ "trimmedLeadSeconds": 1.1,
+ "screenshot": "./record/out/20261122-063509-915/final.png",
+ "dir": "./record/out/20261122-063509-915",
+ "recordDir": "20261122-063509-915"
+}

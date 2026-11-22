@@ -1,0 +1,45 @@
+{
+ "ok": true,
+ "agent": "santa",
+ "createMode": "rpc",
+ "startedAt": "2026-11-22T05:58:57.511Z",
+ "prompt": "Find five Christmas gifts from real shopping websites: puravida christmas, colourpop holiday, leatherman wave, brooklinen robe, stanley tumbler.",
+ "sessionKey": "agent:santa:rec-mwrff948",
+ "url": "http://127.0.0.1:19789/chat/santa/rec-mwrff948",
+ "badgeText": "898 tok/s mean · 933 p90 (server)",
+ "summaryText": "881 tok/s mean · 933 p90 (server)",
+ "meanTps": 898,
+ "p90Tps": 933,
+ "answerText": "not verified (HTTP 429): https://www.puravidabracelets.com/products/red-green-white-bracelet\nnot verified (HTTP 429): https://colourpop.com/products/colour-me-merry-advent-calendar-2026\nnot verified (HTTP 429): https://www.leatherman.com/products/wave\nnot verified (HTTP 429): https://www.brooklinen.com/products/super-plush-robe\nnot verified (HTTP 429): https://www.stanley1913.com/products/the-everyday-tumbler-20-oz",
+ "links": [
+  "https://www.puravidabracelets.com/products/red-green-white-bracelet",
+  "https://colourpop.com/products/colour-me-merry-advent-calendar-2026",
+  "https://www.leatherman.com/products/wave",
+  "https://www.brooklinen.com/products/super-plush-robe",
+  "https://www.stanley1913.com/products/the-everyday-tumbler-20-oz"
+ ],
+ "calls": [
+  {
+   "tokens": 204,
+   "ms": 230.59,
+   "tps": 885
+  },
+  {
+   "tokens": 240,
+   "ms": 257.26,
+   "tps": 933
+  },
+  {
+   "tokens": 161,
+   "ms": 194.82,
+   "tps": 826
+  }
+ ],
+ "durationMs": 29645,
+ "error": null,
+ "video": "./record/out/20261122-055927-898/video.mp4",
+ "trimmedLeadSeconds": 1.07,
+ "screenshot": "./record/out/20261122-055927-898/final.png",
+ "dir": "./record/out/20261122-055927-898",
+ "recordDir": "20261122-055927-898"
+}

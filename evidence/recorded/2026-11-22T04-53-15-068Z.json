@@ -1,0 +1,40 @@
+{
+ "ok": true,
+ "agent": "gifts",
+ "createMode": "rpc",
+ "startedAt": "2026-11-22T04:53:15.068Z",
+ "prompt": "Find five Christmas gifts from real shopping websites: stanley tumbler, brooklinen robe, leatherman multitool, deathwish mug, puravida bracelet.",
+ "sessionKey": "agent:gifts:rec-mwrd2r3w",
+ "url": "http://127.0.0.1:19789/chat/gifts/rec-mwrd2r3w",
+ "badgeText": "815 tok/s mean · 997 p90 (server)",
+ "summaryText": "815 tok/s mean · 997 p90 (server)",
+ "meanTps": 815,
+ "p90Tps": 997,
+ "answerText": "The Everyday Tumbler, 20 OZ $26.25 https://www.stanley1913.com/products/the-everyday-tumbler-20-oz\nSuper-Plush Robe $139.00 https://www.brooklinen.com/products/super-plush-robe\nMUT® EOD $229.95 https://www.leatherman.com/products/mut-eod\nRide or Die Mug $38.00 https://www.deathwishcoffee.com/products/ride-or-die-mug\nSolid Original $2.40 https://www.puravidabracelets.com/products/solid-original",
+ "links": [
+  "https://www.stanley1913.com/products/the-everyday-tumbler-20-oz",
+  "https://www.brooklinen.com/products/super-plush-robe",
+  "https://www.leatherman.com/products/mut-eod",
+  "https://www.deathwishcoffee.com/products/ride-or-die-mug",
+  "https://www.puravidabracelets.com/products/solid-original"
+ ],
+ "calls": [
+  {
+   "tokens": 124,
+   "ms": 196.08,
+   "tps": 632
+  },
+  {
+   "tokens": 174,
+   "ms": 174.5,
+   "tps": 997
+  }
+ ],
+ "durationMs": 15237,
+ "error": null,
+ "video": "./record/out/20261122-045330-815/video.mp4",
+ "trimmedLeadSeconds": 1.44,
+ "screenshot": "./record/out/20261122-045330-815/final.png",
+ "dir": "./record/out/20261122-045330-815",
+ "recordDir": "20261122-045330-815"
+}

@@ -1,0 +1,50 @@
+{
+ "ok": true,
+ "sawRetry": false,
+ "agent": "santa",
+ "createMode": "rpc",
+ "startedAt": "2026-11-22T06:54:30.372Z",
+ "prompt": "Find five Christmas gifts from real shopping websites: puravida christmas, colourpop holiday, leatherman wave, brooklinen robe, stanley tumbler.",
+ "sessionKey": "agent:santa:rec-mwrheoro",
+ "url": "http://127.0.0.1:19789/chat/santa/rec-mwrheoro",
+ "badgeText": "884 tok/s mean · 968 p90 (server)",
+ "summaryText": "871 tok/s mean · 968 p90 (server)",
+ "meanTps": 871,
+ "p90Tps": 968,
+ "answerText": "Under the Mistletoe Bracelet $4.80 https://www.puravidabracelets.com/products/red-green-white-bracelet\nColour Me Merry $99.00 https://colourpop.com/products/colour-me-merry-advent-calendar-2026\nWave® Plus $129.95 https://www.leatherman.com/products/wave\nSuper-Plush Robe $139.00-$149.00 https://www.brooklinen.com/products/super-plush-robe\nThe Everyday Tumbler, 20 OZ $26.25-$35.00 https://www.stanley1913.com/products/the-everyday-tumbler-20-oz",
+ "links": [
+  "https://www.puravidabracelets.com/products/red-green-white-bracelet",
+  "https://colourpop.com/products/colour-me-merry-advent-calendar-2026",
+  "https://www.leatherman.com/products/wave",
+  "https://www.brooklinen.com/products/super-plush-robe",
+  "https://www.stanley1913.com/products/the-everyday-tumbler-20-oz"
+ ],
+ "calls": [
+  {
+   "tokens": 190,
+   "ms": 196.18,
+   "tps": 968
+  },
+  {
+   "tokens": 252,
+   "ms": 311.62,
+   "tps": 809
+  },
+  {
+   "tokens": 174,
+   "ms": 207.94,
+   "tps": 837
+  }
+ ],
+ "durationMs": 14875,
+ "error": null,
+ "badgeTitle": "mean: the average of 11 model calls' rates, 884 tok/s.\np90: 90% of 11 model calls ran at or below 968 tok/s.\nReported by the server: 2,384 tokens in 2.7 s of decode over 11 model calls.",
+ "summaryTitle": "mean: the average of 3 model calls' rates, 871 tok/s.\np90: 90% of 3 model calls ran at or below 968 tok/s.\nReported by the server: 616 tokens in 0.7 s of decode over 3 model calls.",
+ "responseBadgeMean": 884,
+ "responseBadgeP90": 968,
+ "video": "./record/out/20261122-065445-871/video.mp4",
+ "trimmedLeadSeconds": 0.97,
+ "screenshot": "./record/out/20261122-065445-871/final.png",
+ "dir": "./record/out/20261122-065445-871",
+ "recordDir": "20261122-065445-871"
+}

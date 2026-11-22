@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // Records one (or --n) real attempt(s) of the Santa task in the patched OpenClaw web chat.
 //
-//   node record/record.mjs [--agent gifts] [--prompt-file prompts/list.txt] [--n 1]
+//   node record/record.mjs [--agent santa] [--prompt-file prompts/xmas.txt] [--n 1]
 //                          [--create rpc|ui] [--width 1440] [--height 900] [--headed]
 //                          [--expand-tool] [--tail-ms 4000] [--timeout-ms 180000]
 //
@@ -26,8 +26,8 @@ const { chromium } = await import(existsSync(PW) ? PW : "playwright-core");
 const args = process.argv.slice(2);
 const opt = (n, d) => (args.includes(n) ? args[args.indexOf(n) + 1] : d);
 const flag = (n) => args.includes(n);
-const agent = opt("--agent", "gifts");
-const promptFile = opt("--prompt-file", join(root, "prompts/list.txt"));
+const agent = opt("--agent", "santa");
+const promptFile = opt("--prompt-file", join(root, "prompts/xmas.txt"));
 const n = Number(opt("--n", "1"));
 const createMode = opt("--create", "rpc"); // rpc: pre-create session off-camera; ui: /new page
 const width = Number(opt("--width", "1440"));

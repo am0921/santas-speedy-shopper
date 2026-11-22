@@ -20,12 +20,13 @@ const temperature = opt("--temperature", null);
 const extra = opt("--extra", null);
 const inject = opt("--inject", "always"); // always | never: whether workspace AGENTS.md goes into the prompt
 
-// The entry is the "gifts" agent. --variants adds the other agent variants that were
-// compared during tuning (each has its own AGENTS.md under agents/<id>/ and its own tool).
+// The entry is the "santa" agent: search (gift) -> check each link (verify) -> answer.
+// --variants adds the agent variants that were compared during tuning; each has its own
+// AGENTS.md under agents/<id>/ and its own tool set.
 const VARIANTS = flag("--variants")
-  ? { gifts: "gifts", gift: "gift", shop: "shop", "gifts-bare": "gifts" }
-  : { gifts: "gifts" };
-const tools = [...new Set(Object.values(VARIANTS))];
+  ? { santa: ["gift", "verify"], santa2: ["gift", "verify"], santa3: ["gift", "verify"], santa4: ["gift", "verify"], gifts: ["gifts"], gift: ["gift"], shop: ["shop"], "gifts-bare": ["gifts"] }
+  : { santa: ["gift", "verify"] };
+const tools = [...new Set(Object.values(VARIANTS).flat())];
 const params = {};
 if (temperature != null) params.temperature = Number(temperature);
 if (extra) params.extra_body = JSON.parse(extra);
@@ -35,7 +36,7 @@ const config = {
   agents: {
     ...(Object.keys(VARIANTS).length > 1 ? { ownership: "explicit" } : {}),
     defaults: {
-      workspace: join(root, "agents", "gifts"),
+      workspace: join(root, "agents", "santa"),
       model: { primary: `cerebras/${MODEL}` },
       models: { [`cerebras/${MODEL}`]: { params } },
       thinkingDefault: thinking,
@@ -51,7 +52,7 @@ const config = {
     entries: Object.fromEntries(
       Object.entries(VARIANTS).map(([id, tool]) => [
         id,
-        { workspace: join(root, "agents", id), tools: { allow: [tool] } },
+        { workspace: join(root, "agents", id), tools: { allow: tool } },
       ]),
     ),
   },

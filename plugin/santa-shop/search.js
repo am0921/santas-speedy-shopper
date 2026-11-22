@@ -54,3 +54,31 @@ export function parseItem(item) {
   const [store, ...rest] = String(item).trim().split(/\s+/);
   return [store.toLowerCase(), rest.join(" ") || "gift"];
 }
+
+/**
+ * Live existence check for a product page: one HEAD request, redirects followed.
+ * Only storefronts from STORES are checked, and only /products/ paths.
+ */
+export async function checkLink(url, signal) {
+  let u;
+  try {
+    u = new URL(url);
+  } catch {
+    return { ok: false, reason: "not a URL" };
+  }
+  const known = Object.values(STORES).some((s) => s.domain === u.hostname);
+  if (u.protocol !== "https:" || !known || !u.pathname.startsWith("/products/")) {
+    return { ok: false, reason: "not a product page of a known store" };
+  }
+  try {
+    const res = await fetch(u, {
+      method: "HEAD",
+      headers: { "user-agent": UA, accept: "text/html" },
+      redirect: "follow",
+      signal: signal ?? AbortSignal.timeout(8000),
+    });
+    return res.ok ? { ok: true, status: res.status } : { ok: false, status: res.status, reason: `HTTP ${res.status}` };
+  } catch (err) {
+    return { ok: false, reason: err.name === "TimeoutError" ? "timeout" : "network error" };
+  }
+}

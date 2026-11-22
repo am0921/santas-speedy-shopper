@@ -7,9 +7,10 @@
   ],
   "contracts": {
     "tools": [
-      "shop",
       "gift",
-      "gifts"
+      "verify",
+      "gifts",
+      "shop"
     ]
   },
   "activation": {

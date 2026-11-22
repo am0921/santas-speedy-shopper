@@ -17,7 +17,7 @@ const q = (sorted, p) => sorted[Math.min(sorted.length - 1, Math.floor(p * sorte
 const stats = (xs) => {
   const s = xs.toSorted((a, b) => a - b);
   const mean = s.reduce((a, b) => a + b, 0) / s.length;
-  return `n=${s.length} min=${s[0].toFixed(0)} p25=${q(s, 0.25).toFixed(0)} median=${q(s, 0.5).toFixed(0)} mean=${mean.toFixed(0)} p75=${q(s, 0.75).toFixed(0)} p90=${q(s, 0.9).toFixed(0)} max=${s.at(-1).toFixed(0)}`;
+  return `n=${s.length} min=${s[0].toFixed(0)} p25=${q(s, 0.25).toFixed(0)} median=${(s.length % 2 ? s[(s.length - 1) / 2] : (s[s.length / 2 - 1] + s[s.length / 2]) / 2).toFixed(0)} mean=${mean.toFixed(0)} p75=${q(s, 0.75).toFixed(0)} p90=${q(s, 0.9).toFixed(0)} max=${s.at(-1).toFixed(0)}`;
 };
 
 const byLabel = new Map();

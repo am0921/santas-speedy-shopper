@@ -11,7 +11,12 @@ if command -v mise >/dev/null 2>&1 && mise where node@24.22.3 >/dev/null 2>&1; t
 fi
 export OPENCLAW_STATE_DIR="$SANTA_ROOT/state"
 export OPENCLAW_CONFIG_PATH="$SANTA_ROOT/state/openclaw.json"
-export OPENCLAW_GATEWAY_TOKEN="$(cat "$SANTA_ROOT/state/gateway-token")"
+# The local access token is only used when the config asks for token auth (make-config.mjs --auth token).
+if grep -q '"mode": "token"' "$SANTA_ROOT/state/openclaw.json" 2>/dev/null; then
+  export OPENCLAW_GATEWAY_TOKEN="$(cat "$SANTA_ROOT/state/gateway-token")"
+else
+  unset OPENCLAW_GATEWAY_TOKEN
+fi
 export OPENCLAW_GATEWAY_PORT=19789
 export OPENCLAW_DISABLE_BONJOUR=1 OPENCLAW_SKIP_CHANNELS=1 OPENCLAW_NO_AUTO_UPDATE=1
 set -a; . "$SANTA_ROOT/.env"; set +a

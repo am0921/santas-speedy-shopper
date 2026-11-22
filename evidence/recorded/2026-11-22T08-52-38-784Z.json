@@ -1,0 +1,50 @@
+{
+ "ok": true,
+ "sawRetry": true,
+ "agent": "santa7",
+ "createMode": "rpc",
+ "startedAt": "2026-11-22T08:52:38.784Z",
+ "prompt": "Find five Christmas gifts from real shopping websites: puravida christmas, colourpop holiday, leatherman wave, brooklinen robe, stanley tumbler. Fast mode: first call gift for every item in parallel; then call verify for every product URL in parallel; then reply with the verify lines exactly, nothing else. No deliberation.",
+ "sessionKey": "agent:santa7:rec-mwrlmm80",
+ "url": "http://127.0.0.1:19789/chat/santa7/rec-mwrlmm80",
+ "badgeText": "1,022 tok/s mean · 1,271 p90 (server)",
+ "summaryText": "1,090 tok/s mean · 1,271 p90 (server)",
+ "meanTps": 1090,
+ "p90Tps": 1271,
+ "answerText": "Under the Mistletoe Bracelet $4.80 https://www.puravidabracelets.com/products/red-green-white-bracelet\nColour Me Merry $99.00 https://colourpop.com/products/colour-me-merry-advent-calendar-2026\nWave® Plus $129.95 https://www.leatherman.com/products/wave\nSuper-Plush Robe $139.00-$149.00 https://www.brooklinen.com/products/super-plush-robe\nThe Everyday Tumbler, 20 OZ $26.25-$35.00 https://www.stanley1913.com/products/the-everyday-tumbler-20-oz",
+ "links": [
+  "https://www.puravidabracelets.com/products/red-green-white-bracelet",
+  "https://colourpop.com/products/colour-me-merry-advent-calendar-2026",
+  "https://www.leatherman.com/products/wave",
+  "https://www.brooklinen.com/products/super-plush-robe",
+  "https://www.stanley1913.com/products/the-everyday-tumbler-20-oz"
+ ],
+ "calls": [
+  {
+   "tokens": 216,
+   "ms": 275.78,
+   "tps": 783
+  },
+  {
+   "tokens": 253,
+   "ms": 199.08,
+   "tps": 1271
+  },
+  {
+   "tokens": 174,
+   "ms": 143.05,
+   "tps": 1216
+  }
+ ],
+ "durationMs": 34514,
+ "error": null,
+ "badgeTitle": "mean: the average of 10 model calls' rates, 1,022 tok/s.\np90: 90% of 10 model calls ran at or below 1,271 tok/s.\nReported by the server: 2,266 tokens in 2.3 s of decode over 10 model calls.",
+ "summaryTitle": "mean: the average of 3 model calls' rates, 1,090 tok/s.\np90: 90% of 3 model calls ran at or below 1,271 tok/s.\nReported by the server: 643 tokens in 0.6 s of decode over 3 model calls.",
+ "responseBadgeMean": 1022,
+ "responseBadgeP90": 1271,
+ "video": "./record/out/20261122-085313-1090/video.mp4",
+ "trimmedLeadSeconds": 1.05,
+ "screenshot": "./record/out/20261122-085313-1090/final.png",
+ "dir": "./record/out/20261122-085313-1090",
+ "recordDir": "20261122-085313-1090"
+}

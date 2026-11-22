@@ -68,5 +68,5 @@ if ! grep -q '^CEREBRAS_API_KEY=.\+' .env; then
   echo "Now put your Cerebras API key in .env (CEREBRAS_API_KEY=...), then run ./run-gateway.sh"
 else
   echo
-  echo "Ready. Start with ./run-gateway.sh and open the URL printed by ./open-ui.sh"
+  echo "Ready. Start with ./run-gateway.sh and open http://127.0.0.1:19789/"
 fi

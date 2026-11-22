@@ -2,7 +2,7 @@
 // Writes state/openclaw.json for this project. All knobs are plain OpenClaw config;
 // nothing here touches the speed patch or the measurement path.
 //
-// Usage: node make-config.mjs [--variants] [--thinking low|high|max] [--max-tokens N]
+// Usage: node make-config.mjs [--variants] [--auth none|token] [--thinking low|high|max] [--max-tokens N]
 //                             [--temperature T] [--extra '{"k":"v"}']
 import { writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
@@ -18,13 +18,16 @@ const thinking = opt("--thinking", "low");
 const maxTokens = Number(opt("--max-tokens", "1024"));
 const temperature = opt("--temperature", null);
 const extra = opt("--extra", null);
+// "none" keeps the operator-profile context message out of the model's prompt (see README);
+// the Gateway only listens on loopback. Use --auth token to require the local access token.
+const auth = opt("--auth", "none");
 const inject = opt("--inject", "always"); // always | never: whether workspace AGENTS.md goes into the prompt
 
 // The entry is the "santa" agent: search (gift) -> check each link (verify) -> answer.
 // --variants adds the agent variants that were compared during tuning; each has its own
 // AGENTS.md under agents/<id>/ and its own tool set.
 const VARIANTS = flag("--variants")
-  ? { santa: ["gift", "verify"], santa2: ["gift", "verify"], santa3: ["gift", "verify"], santa4: ["gift", "verify"], gifts: ["gifts"], gift: ["gift"], shop: ["shop"], "gifts-bare": ["gifts"] }
+  ? { santa: ["gift", "verify"], santa2: ["gift", "verify"], santa3: ["gift", "verify"], santa4: ["gift", "verify"], santa5: ["gift", "verify"], santa6: ["gift", "verify"], santa7: ["gift", "verify"], gifts: ["gifts"], gift: ["gift"], shop: ["shop"], "gifts-bare": ["gifts"] }
   : { santa: ["gift", "verify"] };
 const tools = [...new Set(Object.values(VARIANTS).flat())];
 const params = {};
@@ -32,7 +35,7 @@ if (temperature != null) params.temperature = Number(temperature);
 if (extra) params.extra_body = JSON.parse(extra);
 
 const config = {
-  gateway: { mode: "local", port: 19789, bind: "loopback", auth: { mode: "token" } },
+  gateway: { mode: "local", port: 19789, bind: "loopback", auth: { mode: auth } },
   agents: {
     ...(Object.keys(VARIANTS).length > 1 ? { ownership: "explicit" } : {}),
     defaults: {
@@ -98,4 +101,4 @@ const config = {
 
 const out = join(root, "state", "openclaw.json");
 writeFileSync(out, JSON.stringify(config, null, 2) + "\n");
-console.log(`wrote ${out}: agents=${Object.keys(VARIANTS).join(",")} inject=${inject} thinking=${thinking} maxTokens=${maxTokens} params=${JSON.stringify(params)}`);
+console.log(`wrote ${out}: agents=${Object.keys(VARIANTS).join(",")} auth=${auth} inject=${inject} thinking=${thinking} maxTokens=${maxTokens} params=${JSON.stringify(params)}`);

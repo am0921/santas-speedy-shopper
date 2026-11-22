@@ -1,0 +1,1 @@
+Find five Christmas gifts from real shopping websites: puravida christmas, colourpop holiday, leatherman wave, brooklinen robe, stanley tumbler. Fast mode: first call gift for every item in parallel; then call verify for every product URL in parallel; then reply with the verify lines exactly, nothing else. No deliberation.

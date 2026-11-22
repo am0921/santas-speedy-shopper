@@ -42,7 +42,9 @@ const displayName = opt("--title", "Christmas gifts");
 const port = process.env.OPENCLAW_GATEWAY_PORT ?? "19789";
 const base = `http://127.0.0.1:${port}`;
 const stateDir = join(root, "state");
-const token = readFileSync(join(stateDir, "gateway-token"), "utf8").trim();
+// With gateway.auth.mode "none" (loopback only) no token is sent anywhere.
+const authMode = JSON.parse(readFileSync(join(stateDir, "openclaw.json"), "utf8")).gateway?.auth?.mode ?? "token";
+const token = authMode === "none" ? "" : readFileSync(join(stateDir, "gateway-token"), "utf8").trim();
 const prompt = readFileSync(promptFile, "utf8").trim();
 const outRoot = join(here, "out");
 mkdirSync(outRoot, { recursive: true });
@@ -53,7 +55,7 @@ const nodeBin = (() => {
   const p = r.status === 0 ? join(r.stdout.trim(), "bin/node") : null;
   return p && existsSync(p) ? p : process.execPath;
 })();
-const scrub = (s) => String(s ?? "").replaceAll(token, "<token>");
+const scrub = (s) => (token ? String(s ?? "").replaceAll(token, "<token>") : String(s ?? ""));
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 const stamp = () => new Date().toISOString().replace(/[-:]/g, "").replace(/\..*/, "").replace("T", "-");
 
@@ -63,12 +65,13 @@ function createSession(key) {
     ...process.env,
     OPENCLAW_STATE_DIR: stateDir,
     OPENCLAW_CONFIG_PATH: join(stateDir, "openclaw.json"),
-    OPENCLAW_GATEWAY_TOKEN: token,
+    ...(token ? { OPENCLAW_GATEWAY_TOKEN: token } : {}),
     OPENCLAW_GATEWAY_PORT: port,
     OPENCLAW_DISABLE_BONJOUR: "1",
     OPENCLAW_SKIP_CHANNELS: "1",
     OPENCLAW_NO_AUTO_UPDATE: "1",
   };
+  if (!token) delete env.OPENCLAW_GATEWAY_TOKEN;
   const params = JSON.stringify({ agentId: agent, key, displayName });
   const r = spawnSync(
     nodeBin,
@@ -83,7 +86,7 @@ function createSession(key) {
 
 async function history(sessionKey) {
   const res = await fetch(`${base}/sessions/${encodeURIComponent(sessionKey)}/history?limit=200`, {
-    headers: { authorization: `Bearer ${token}` },
+    headers: token ? { authorization: `Bearer ${token}` } : {},
   });
   if (!res.ok) throw new Error(`history HTTP ${res.status}`);
   const json = await res.json();
@@ -138,7 +141,7 @@ async function attempt(i, browser) {
   const name = `rec-${Date.now().toString(36)}`;
   const tmpDir = join(outRoot, `.tmp-${name}`);
   mkdirSync(tmpDir, { recursive: true });
-  const result = { ok: false, sawRetry: false, agent, createMode, startedAt, prompt, sessionKey: null, url: null, badgeText: null, summaryText: null, meanTps: null, p90Tps: null, answerText: "", links: [], calls: [], durationMs: null, error: null };
+  const result = { ok: false, sawRetry: false, authMode, agent, createMode, startedAt, prompt, sessionKey: null, url: null, badgeText: null, summaryText: null, meanTps: null, p90Tps: null, answerText: "", links: [], calls: [], durationMs: null, error: null };
   let sessionKey = `agent:${agent}:${name}`;
   if (createMode === "rpc") {
     sessionKey = createSession(sessionKey);
@@ -157,7 +160,7 @@ async function attempt(i, browser) {
   page.on("console", (m) => m.type() === "error" && consoleErrors.push(scrub(m.text()).slice(0, 300)));
   try {
     const path = createMode === "rpc" ? `/chat/${encodeURIComponent(agent)}/${name}` : `/new?agent=${encodeURIComponent(agent)}`;
-    await page.goto(`${base}${path}#token=${token}`);
+    await page.goto(token ? `${base}${path}#token=${token}` : `${base}${path}`);
     const composer = page
       .locator(createMode === "rpc" ? 'textarea[aria-label="Chat composer"]:visible' : "textarea:visible")
       .first();

@@ -48,6 +48,7 @@ What we learned by measuring Kimi K3.1 Pro on Cerebras (scripts in `bench/`, raw
 The score is the plain average of the per-call rates, so the run is designed to spend its tokens where Kimi on Cerebras is fastest:
 
 - **Almost no reasoning.** Reasoning cannot be switched off for this model (`low` is the lowest effort the API accepts) and reasoning tokens are the slowest ones: in a linear fit of server decode time over 126 direct-API calls, about 3.8 ms per reasoning token against about 1.1 ms per visible token. So the instruction is terse and the request leaves nothing to decide.
+- **Nothing after the tool results.** With token auth, the web chat appends a user-role "OpenClaw runtime context" message (the signed-in operator's profile) after the tool results of every call. Kimi then spends reasoning on whether that message needs an answer: the final call had a median of 185 tokens with it (104 recorded runs) against 165 without it (6 runs). `gateway.auth.mode: "none"` on a loopback-only Gateway leaves that message out. We found this by logging the request bodies once through a local debugging proxy; no measured run goes through a proxy.
 - **Tool calls copied from context.** Call 1 copies the wish-list items into five parallel `gift` calls; the parallel calls carry more fast tokens for the same handful of reasoning tokens than one batched call does. Call 2 copies the five product URLs into `verify` calls and usually needs no reasoning at all.
 - **An answer copied from the checked results.** The tools return lines that are ready to show, and Kimi repeats them.
 
@@ -63,14 +64,14 @@ Run-to-run noise is large (the same 147-token answer took between 96 and 190 ms 
 | Wish list, `shop` tool (three candidates per store) | 2 | 8 (of 8) | 702 | 1,096 |
 | Wish list, `gift` tool (five parallel calls, no link check) | 2 | 16 (of 16) | 843 | 1,132 |
 | Wish list, `gifts` tool (one batched call, no link check) | 2 | 48 (of 59) | 803 | 1,167 |
-| Wish list, `gift` + `verify`, **this entry** (`santa` agent) | 3 | 16 (of 17) | 935 | 1,273 |
+| Wish list, `gift` + `verify`, **this entry** (`santa` agent) | 3 | 19 (of 21) | 934 | 1,273 |
 <!-- table:end -->
 
 A run is complete when it returned five distinct product links with timing for every model call. Runs that did not, almost always because the provider answered 429 while the service was congested, are counted as started and left out of the median. The rows were not all run on the same wish list or at the same time; the like-for-like comparison is the head-to-head where `santa` and `gifts` alternated run by run: <!-- h2h:start -->`santa` won 7 of 8 rounds (median 932 against 734).<!-- h2h:end -->
 
 ### The demo video is the best of many attempts
 
-The bounty asks for the top TPS achieved, so the video is the best of the recorded web chat attempts, not a typical one. `record/loop.sh` records batches whenever the endpoint is not congested, one attempt at a time, each in a fresh conversation; `node record/best.mjs` lists them. <!-- recorded:start -->Across 93 complete recorded attempts (of 98 started) the median is 931 and the best is 1,316 tok/s; the best without a provider retry visible on screen is 1,221.<!-- recorded:end --> The per-attempt data is in `evidence/recorded/`.
+The bounty asks for the top TPS achieved, so the video is the best of the recorded web chat attempts, not a typical one. `record/loop.sh` records batches whenever the endpoint is not congested, one attempt at a time, each in a fresh conversation; `node record/best.mjs` lists them. <!-- recorded:start -->Across 111 complete recorded attempts (of 135 started) the median is 931 and the best is 1,316 tok/s; the best without a provider retry visible on screen is 1,221.<!-- recorded:end --> The per-attempt data is in `evidence/recorded/`; each attempt records the auth mode it ran with (attempts without an `authMode` field were made with token auth, before we found the context message; the best so far is one of those).
 
 ### Reading the speed readout
 
@@ -94,7 +95,7 @@ The model, base URL, thinking level (`low`) and supported reasoning efforts are 
 | `heartbeat.every: "0m"`, `utilityModel: ""`, `skills.workshop.autonomous.mode: "off"` | No background model calls during a run |
 | `maxTokens: 1024` | Plenty for the answer; smaller reservation against the per-minute token limit |
 | `plugins.load.paths`, `plugins.allow` | Loads `plugin/santa-shop`; only it and the Cerebras provider plugin are allowed |
-| `gateway` (port 19789, loopback, token auth) | A local Gateway with its own state directory |
+| `gateway` (port 19789, loopback only), `gateway.auth.mode: "none"` | A local Gateway with its own state directory. Without auth the web chat does not attach the operator-profile message described below |
 
 Nothing in OpenClaw itself is modified. `openclaw/` is commit `8b18b55` plus the two commits of the official patch; `setup.sh` checks the patch file's checksum and that the checkout is exactly that.
 
@@ -117,11 +118,7 @@ Put your key in `.env` (`CEREBRAS_API_KEY=...`), then start the Gateway. It runs
 ./run-gateway.sh    # Gateway + web chat on http://127.0.0.1:19789
 ```
 
-In a second terminal:
-
-```bash
-./open-ui.sh        # prints the web chat URL (includes the local access token)
-```
+Then open http://127.0.0.1:19789/ in a browser. The Gateway listens on loopback only and is configured without auth; if you prefer the local access token, run `node make-config.mjs --auth token`, restart the Gateway and use the URL that `./open-ui.sh` prints (the readout then includes the extra context message, so expect slightly lower numbers).
 
 In the web chat, start a new conversation (`santa` is the only configured agent) and send the prompt in `prompts/xmas.txt`. Read the tok/s value next to the message box: with one run in a fresh conversation it is that run's mean, the number we report. Use a fresh conversation per attempt. All OpenClaw state stays in `./state`; nothing is written to `~/.openclaw`. If you move the folder, run `node make-config.mjs` again, because the config holds absolute paths to the plugin and the agent folder.
 

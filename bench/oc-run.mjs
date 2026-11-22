@@ -22,7 +22,7 @@ const port = process.env.OPENCLAW_GATEWAY_PORT ?? "19789";
 const token = process.env.OPENCLAW_GATEWAY_TOKEN;
 const out = join(root, "logs", "oc-runs.jsonl");
 mkdirSync(dirname(out), { recursive: true });
-if (!promptFile || !token) {
+if (!promptFile || !process.env.OPENCLAW_STATE_DIR) {
   console.error("need --prompt-file and a sourced env.sh");
   process.exit(2);
 }
@@ -37,7 +37,7 @@ function textOf(content) {
 async function history(sessionKey) {
   const res = await fetch(
     `http://127.0.0.1:${port}/sessions/${encodeURIComponent(sessionKey)}/history?limit=200`,
-    { headers: { authorization: `Bearer ${token}` } },
+    { headers: token ? { authorization: `Bearer ${token}` } : {} },
   );
   if (!res.ok) throw new Error(`history HTTP ${res.status}`);
   const json = await res.json();

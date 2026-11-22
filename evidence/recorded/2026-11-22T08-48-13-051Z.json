@@ -1,0 +1,35 @@
+{
+ "ok": false,
+ "sawRetry": true,
+ "agent": "santa",
+ "createMode": "rpc",
+ "startedAt": "2026-11-22T08:48:13.051Z",
+ "prompt": "Find five Christmas gifts from real shopping websites: puravida christmas, colourpop holiday, leatherman wave, brooklinen robe, stanley tumbler.",
+ "sessionKey": "agent:santa:rec-mwrlgx6j",
+ "url": null,
+ "badgeText": null,
+ "summaryText": null,
+ "meanTps": null,
+ "p90Tps": null,
+ "answerText": "",
+ "links": [],
+ "calls": [
+  {
+   "tokens": 274,
+   "ms": 401.67,
+   "tps": 682
+  },
+  {
+   "tokens": 240,
+   "ms": 171.64,
+   "tps": 1398
+  }
+ ],
+ "durationMs": 166282,
+ "error": "run ended without a speed badge: ⚠️ The AI service needs a short break. Please try again in a few minutes.",
+ "video": "./record/out/20261122-085059-failed/video.mp4",
+ "trimmedLeadSeconds": 2.32,
+ "screenshot": "./record/out/20261122-085059-failed/final.png",
+ "dir": "./record/out/20261122-085059-failed",
+ "recordDir": "20261122-085059-failed"
+}

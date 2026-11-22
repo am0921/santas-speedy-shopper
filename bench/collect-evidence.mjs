@@ -44,7 +44,7 @@ const direct = {
 let n = 1;
 for (const [from, to] of Object.entries(direct)) if (put(from, to)) n++;
 
-// Recorded web chat attempts (record/record.mjs): result.json and the final screenshot.
+// Recorded web chat attempts (record/record.mjs): each attempt's result.json.
 const rec = join(root, "record", "out");
 let attempts = 0;
 const kept = new Set();

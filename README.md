@@ -70,7 +70,7 @@ A run is complete when it returned five distinct product links with timing for e
 
 ### The demo video is the best of many attempts
 
-The bounty asks for the top TPS achieved, so the video is the best of the recorded web chat attempts, not a typical one. `record/loop.sh` records batches whenever the endpoint is not congested, one attempt at a time, each in a fresh conversation; `node record/best.mjs` lists them. <!-- recorded:start -->Across 55 complete recorded attempts (of 59 started) the median is 933 and the best is 1,316 tok/s; the best without a provider retry visible on screen is 1,221.<!-- recorded:end --> The per-attempt data is in `evidence/recorded/`.
+The bounty asks for the top TPS achieved, so the video is the best of the recorded web chat attempts, not a typical one. `record/loop.sh` records batches whenever the endpoint is not congested, one attempt at a time, each in a fresh conversation; `node record/best.mjs` lists them. <!-- recorded:start -->Across 93 complete recorded attempts (of 98 started) the median is 931 and the best is 1,316 tok/s; the best without a provider retry visible on screen is 1,221.<!-- recorded:end --> The per-attempt data is in `evidence/recorded/`.
 
 ### Reading the speed readout
 

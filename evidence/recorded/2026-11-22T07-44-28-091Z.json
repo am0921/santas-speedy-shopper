@@ -1,0 +1,50 @@
+{
+ "ok": true,
+ "sawRetry": false,
+ "agent": "santa",
+ "createMode": "rpc",
+ "startedAt": "2026-11-22T07:44:28.091Z",
+ "prompt": "Find five Christmas gifts from real shopping websites: puravida christmas, colourpop holiday, leatherman wave, brooklinen robe, stanley tumbler.",
+ "sessionKey": "agent:santa:rec-mwrj6xtn",
+ "url": "http://127.0.0.1:19789/chat/santa/rec-mwrj6xtn",
+ "badgeText": "626 tok/s mean · 703 p90 (server)",
+ "summaryText": "655 tok/s mean · 703 p90 (server)",
+ "meanTps": 655,
+ "p90Tps": 703,
+ "answerText": "Under the Mistletoe Bracelet $4.80 https://www.puravidabracelets.com/products/red-green-white-bracelet\nColour Me Merry $99.00 https://colourpop.com/products/colour-me-merry-advent-calendar-2026\nWave® Plus $129.95 https://www.leatherman.com/products/wave\nSuper-Plush Robe $139.00-$149.00 https://www.brooklinen.com/products/super-plush-robe\nThe Everyday Tumbler, 20 OZ $26.25-$35.00 https://www.stanley1913.com/products/the-everyday-tumbler-20-oz",
+ "links": [
+  "https://www.puravidabracelets.com/products/red-green-white-bracelet",
+  "https://colourpop.com/products/colour-me-merry-advent-calendar-2026",
+  "https://www.leatherman.com/products/wave",
+  "https://www.brooklinen.com/products/super-plush-robe",
+  "https://www.stanley1913.com/products/the-everyday-tumbler-20-oz"
+ ],
+ "calls": [
+  {
+   "tokens": 204,
+   "ms": 358.56,
+   "tps": 569
+  },
+  {
+   "tokens": 260,
+   "ms": 374.69,
+   "tps": 694
+  },
+  {
+   "tokens": 178,
+   "ms": 253.14,
+   "tps": 703
+  }
+ ],
+ "durationMs": 16085,
+ "error": null,
+ "badgeTitle": "mean: the average of 9 model calls' rates, 626 tok/s.\np90: 90% of 9 model calls ran at or below 703 tok/s.\nReported by the server: 1,978 tokens in 3.2 s of decode over 9 model calls.",
+ "summaryTitle": "mean: the average of 3 model calls' rates, 655 tok/s.\np90: 90% of 3 model calls ran at or below 703 tok/s.\nReported by the server: 642 tokens in 1.0 s of decode over 3 model calls.",
+ "responseBadgeMean": 626,
+ "responseBadgeP90": 703,
+ "video": "./record/out/20261122-074444-655/video.mp4",
+ "trimmedLeadSeconds": 1.05,
+ "screenshot": "./record/out/20261122-074444-655/final.png",
+ "dir": "./record/out/20261122-074444-655",
+ "recordDir": "20261122-074444-655"
+}

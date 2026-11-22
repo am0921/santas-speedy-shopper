@@ -1,0 +1,39 @@
+{
+ "ok": false,
+ "sawRetry": true,
+ "agent": "santa",
+ "createMode": "rpc",
+ "startedAt": "2026-11-22T07:10:17.409Z",
+ "prompt": "Find five Christmas gifts from real shopping websites: puravida christmas, colourpop holiday, leatherman wave, brooklinen robe, stanley tumbler.",
+ "sessionKey": "agent:santa:rec-mwrhyzi9",
+ "url": "http://127.0.0.1:19789/chat/santa/rec-mwrhyzi9",
+ "badgeText": "906 tok/s mean · 968 p90 (server)",
+ "summaryText": "906 tok/s mean · 968 p90 (server)",
+ "meanTps": 906,
+ "p90Tps": 968,
+ "answerText": "⚠️ The AI service needs a short break. Please try again in a few minutes.",
+ "links": [],
+ "calls": [
+  {
+   "tokens": 213,
+   "ms": 252.36,
+   "tps": 844
+  },
+  {
+   "tokens": 240,
+   "ms": 248.05,
+   "tps": 968
+  }
+ ],
+ "durationMs": 151057,
+ "error": "badge=true links=0",
+ "badgeTitle": "mean: the average of 2 model calls' rates, 906 tok/s.\np90: 90% of 2 model calls ran at or below 968 tok/s.\nReported by the server: 453 tokens in 0.5 s of decode over 2 model calls.",
+ "summaryTitle": "mean: the average of 2 model calls' rates, 906 tok/s.\np90: 90% of 2 model calls ran at or below 968 tok/s.\nReported by the server: 453 tokens in 0.5 s of decode over 2 model calls.",
+ "responseBadgeMean": 906,
+ "responseBadgeP90": 968,
+ "video": "./record/out/20261122-071248-906/video.mp4",
+ "trimmedLeadSeconds": 1.24,
+ "screenshot": "./record/out/20261122-071248-906/final.png",
+ "dir": "./record/out/20261122-071248-906",
+ "recordDir": "20261122-071248-906"
+}

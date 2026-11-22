@@ -1,0 +1,50 @@
+{
+ "ok": true,
+ "sawRetry": true,
+ "agent": "santa",
+ "createMode": "rpc",
+ "startedAt": "2026-11-22T07:23:18.852Z",
+ "prompt": "Find five Christmas gifts from real shopping websites: puravida christmas, colourpop holiday, leatherman wave, brooklinen robe, stanley tumbler.",
+ "sessionKey": "agent:santa:rec-mwrifqh0",
+ "url": "http://127.0.0.1:19789/chat/santa/rec-mwrifqh0",
+ "badgeText": "1,203 tok/s mean · 1,287 p90 (server)",
+ "summaryText": "1,093 tok/s mean · 1,287 p90 (server)",
+ "meanTps": 1093,
+ "p90Tps": 1287,
+ "answerText": "Under the Mistletoe Bracelet $4.80 https://www.puravidabracelets.com/products/red-green-white-bracelet\nColour Me Merry $99.00 https://colourpop.com/products/colour-me-merry-advent-calendar-2026\nWave® Plus $129.95 https://www.leatherman.com/products/wave\nSuper-Plush Robe $139.00-$149.00 https://www.brooklinen.com/products/super-plush-robe\nThe Everyday Tumbler, 20 OZ $26.25-$35.00 https://www.stanley1913.com/products/the-everyday-tumbler-20-oz",
+ "links": [
+  "https://www.puravidabracelets.com/products/red-green-white-bracelet",
+  "https://colourpop.com/products/colour-me-merry-advent-calendar-2026",
+  "https://www.leatherman.com/products/wave",
+  "https://www.brooklinen.com/products/super-plush-robe",
+  "https://www.stanley1913.com/products/the-everyday-tumbler-20-oz"
+ ],
+ "calls": [
+  {
+   "tokens": 190,
+   "ms": 157.97,
+   "tps": 1203
+  },
+  {
+   "tokens": 260,
+   "ms": 202.04,
+   "tps": 1287
+  },
+  {
+   "tokens": 228,
+   "ms": 289.13,
+   "tps": 789
+  }
+ ],
+ "durationMs": 18555,
+ "error": null,
+ "badgeTitle": "mean: the average of 11 model calls' rates, 1,203 tok/s.\np90: 90% of 11 model calls ran at or below 1,287 tok/s.\nReported by the server: 2,478 tokens in 2.1 s of decode over 11 model calls.",
+ "summaryTitle": "mean: the average of 3 model calls' rates, 1,093 tok/s.\np90: 90% of 3 model calls ran at or below 1,287 tok/s.\nReported by the server: 678 tokens in 0.6 s of decode over 3 model calls.",
+ "responseBadgeMean": 1203,
+ "responseBadgeP90": 1287,
+ "video": "./record/out/20261122-072337-1093/video.mp4",
+ "trimmedLeadSeconds": 0.99,
+ "screenshot": "./record/out/20261122-072337-1093/final.png",
+ "dir": "./record/out/20261122-072337-1093",
+ "recordDir": "20261122-072337-1093"
+}

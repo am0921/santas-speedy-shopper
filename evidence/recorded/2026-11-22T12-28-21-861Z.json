@@ -1,0 +1,35 @@
+{
+ "ok": false,
+ "sawRetry": true,
+ "authMode": "none",
+ "agent": "santa",
+ "createMode": "rpc",
+ "startedAt": "2026-11-22T12:28:21.861Z",
+ "prompt": "Find five Christmas gifts from real shopping websites: puravida christmas, colourpop holiday, leatherman wave, brooklinen robe, stanley tumbler.",
+ "sessionKey": "agent:santa:rec-mwrtc15x",
+ "url": "http://127.0.0.1:19789/chat/santa/rec-mwrtc15x",
+ "badgeText": "765 tok/s mean · 765 p90 (server)",
+ "summaryText": "765 tok/s mean · 765 p90 (server)",
+ "meanTps": 765,
+ "p90Tps": 765,
+ "answerText": "⚠️ The AI service needs a short break. Please try again in a few minutes.",
+ "links": [],
+ "calls": [
+  {
+   "tokens": 227,
+   "ms": 296.8,
+   "tps": 765
+  }
+ ],
+ "durationMs": 163442,
+ "error": "badge=true links=0",
+ "badgeTitle": "mean: the average of 1 model calls' rates, 765 tok/s.\np90: 90% of 1 model calls ran at or below 765 tok/s.\nReported by the server: 227 tokens in 0.3 s of decode over 1 model calls.",
+ "summaryTitle": "mean: the average of 1 model calls' rates, 765 tok/s.\np90: 90% of 1 model calls ran at or below 765 tok/s.\nReported by the server: 227 tokens in 0.3 s of decode over 1 model calls.",
+ "responseBadgeMean": 765,
+ "responseBadgeP90": 765,
+ "video": "./record/out/20261122-123105-765/video.mp4",
+ "trimmedLeadSeconds": 1.1,
+ "screenshot": "./record/out/20261122-123105-765/final.png",
+ "dir": "./record/out/20261122-123105-765",
+ "recordDir": "20261122-123105-765"
+}

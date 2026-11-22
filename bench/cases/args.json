@@ -1,0 +1,122 @@
+[
+ {
+  "name": "args-arr",
+  "body": {
+   "temperature": 1,
+   "reasoning_effort": "low",
+   "max_completion_tokens": 1024,
+   "tools": [
+    {
+     "type": "function",
+     "function": {
+      "name": "gifts",
+      "description": "Find gifts at real online stores, live. Each item is \"store word\", e.g. \"brooklinen robe\". Returns the top in-stock product per item, one line each: \"- title price URL\". Stores: stanley (tumblers, drinkware); brooklinen (robes, bedding, towels); allbirds (wool shoes, slippers); deathwish (coffee, mugs); leatherman (multitools, knives); ugmonk (desk organizers); puravida (bracelets, jewelry); colourpop (makeup); taylorstitch (menswear); kylie (cosmetics).",
+      "parameters": {
+       "type": "object",
+       "properties": {
+        "items": {
+         "type": "array",
+         "items": {
+          "type": "string"
+         }
+        }
+       },
+       "required": [
+        "items"
+       ],
+       "additionalProperties": false
+      }
+     }
+    }
+   ],
+   "messages": [
+    {
+     "role": "system",
+     "content": "Be terse. Do not deliberate.\n1. Call `gifts` once with every requested item as \"store word\".\n2. Reply with the tool output only."
+    },
+    {
+     "role": "user",
+     "content": "Find five Christmas gifts from real shopping websites: stanley tumbler, brooklinen robe, leatherman multitool, deathwish mug, puravida bracelet."
+    }
+   ]
+  }
+ },
+ {
+  "name": "args-str",
+  "body": {
+   "temperature": 1,
+   "reasoning_effort": "low",
+   "max_completion_tokens": 1024,
+   "tools": [
+    {
+     "type": "function",
+     "function": {
+      "name": "gifts",
+      "description": "Find gifts at real online stores, live. `list` is comma-separated \"store word\" items, e.g. \"brooklinen robe, deathwish mug\". Returns the top in-stock product per item, one line each: \"- title price URL\". Stores: stanley (tumblers, drinkware); brooklinen (robes, bedding, towels); allbirds (wool shoes, slippers); deathwish (coffee, mugs); leatherman (multitools, knives); ugmonk (desk organizers); puravida (bracelets, jewelry); colourpop (makeup); taylorstitch (menswear); kylie (cosmetics).",
+      "parameters": {
+       "type": "object",
+       "properties": {
+        "list": {
+         "type": "string"
+        }
+       },
+       "required": [
+        "list"
+       ],
+       "additionalProperties": false
+      }
+     }
+    }
+   ],
+   "messages": [
+    {
+     "role": "system",
+     "content": "Be terse. Do not deliberate.\n1. Call `gifts` once with the requested items as one comma-separated string.\n2. Reply with the tool output only."
+    },
+    {
+     "role": "user",
+     "content": "Find five Christmas gifts from real shopping websites: stanley tumbler, brooklinen robe, leatherman multitool, deathwish mug, puravida bracelet."
+    }
+   ]
+  }
+ },
+ {
+  "name": "args-req",
+  "body": {
+   "temperature": 1,
+   "reasoning_effort": "low",
+   "max_completion_tokens": 1024,
+   "tools": [
+    {
+     "type": "function",
+     "function": {
+      "name": "gifts",
+      "description": "Find gifts at real online stores, live. `request` is the user's request, verbatim; it names a store and a word per item. Returns the top in-stock product per item, one line each: \"- title price URL\". Stores: stanley (tumblers, drinkware); brooklinen (robes, bedding, towels); allbirds (wool shoes, slippers); deathwish (coffee, mugs); leatherman (multitools, knives); ugmonk (desk organizers); puravida (bracelets, jewelry); colourpop (makeup); taylorstitch (menswear); kylie (cosmetics).",
+      "parameters": {
+       "type": "object",
+       "properties": {
+        "request": {
+         "type": "string"
+        }
+       },
+       "required": [
+        "request"
+       ],
+       "additionalProperties": false
+      }
+     }
+    }
+   ],
+   "messages": [
+    {
+     "role": "system",
+     "content": "Be terse. Do not deliberate.\n1. Call `gifts` once with the user's request, verbatim.\n2. Reply with the tool output only."
+    },
+    {
+     "role": "user",
+     "content": "Find five Christmas gifts from real shopping websites: stanley tumbler, brooklinen robe, leatherman multitool, deathwish mug, puravida bracelet."
+    }
+   ]
+  }
+ }
+]

@@ -1,0 +1,1325 @@
+[
+ {
+  "name": "final-none",
+  "body": {
+   "temperature": 1,
+   "reasoning_effort": "low",
+   "max_completion_tokens": 1024,
+   "messages": [
+    {
+     "role": "user",
+     "content": "Find five Christmas gifts from real shopping websites. Give each product with its product page link."
+    },
+    {
+     "role": "assistant",
+     "content": "",
+     "tool_calls": [
+      {
+       "id": "call_0",
+       "type": "function",
+       "function": {
+        "name": "shop",
+        "arguments": "{\"store\":\"stanley\",\"q\":\"holiday\"}"
+       }
+      },
+      {
+       "id": "call_1",
+       "type": "function",
+       "function": {
+        "name": "shop",
+        "arguments": "{\"store\":\"brooklinen\",\"q\":\"robe\"}"
+       }
+      },
+      {
+       "id": "call_2",
+       "type": "function",
+       "function": {
+        "name": "shop",
+        "arguments": "{\"store\":\"leatherman\",\"q\":\"multitool\"}"
+       }
+      },
+      {
+       "id": "call_3",
+       "type": "function",
+       "function": {
+        "name": "shop",
+        "arguments": "{\"store\":\"deathwish\",\"q\":\"mug\"}"
+       }
+      },
+      {
+       "id": "call_4",
+       "type": "function",
+       "function": {
+        "name": "shop",
+        "arguments": "{\"store\":\"ugmonk\",\"q\":\"desk\"}"
+       }
+      }
+     ]
+    },
+    {
+     "role": "tool",
+     "tool_call_id": "call_0",
+     "content": "Stanley 1913 x FARM Rio Quencher® H2.O Ornament Set | $50.00 | https://www.stanley1913.com/products/the-quencher%C2%AE-h2-o-ornament-set\nThe Stay-Hot Camp Mug | 24 OZ | $35.00 | https://www.stanley1913.com/products/the-everyday-suburban-mug-24-oz-0-71-l\nStanley 1913 x FARM Rio Quencher® ProTour Flip Straw Tumbler Set | 30 OZ & 20 OZ | $100.00 | https://www.stanley1913.com/products/the-quencher%C2%AE-protour-flip-straw-tumbler-set-30-oz-20-oz"
+    },
+    {
+     "role": "tool",
+     "tool_call_id": "call_1",
+     "content": "Super-Plush Robe | $139.00 | https://www.brooklinen.com/products/super-plush-robe\nSuper-Plush Shorty Robe - Last Call | $55.60 | https://www.brooklinen.com/products/super-plush-shorty-robe-last-call\nDreamweave Waffle Robe | $129.00 | https://www.brooklinen.com/products/waffle-robe"
+    },
+    {
+     "role": "tool",
+     "tool_call_id": "call_2",
+     "content": "MUT® EOD | $229.95 | https://www.leatherman.com/products/mut-eod\nSkeletool® | $74.95 | https://www.leatherman.com/products/skeletool\nWave® Plus | $129.95 | https://www.leatherman.com/products/wave"
+    },
+    {
+     "role": "tool",
+     "tool_call_id": "call_3",
+     "content": "Ride or Die Mug | $38.00 | https://www.deathwishcoffee.com/products/ride-or-die-mug\n2026 Death Wish Coffee Mug | $38.00 | https://www.deathwishcoffee.com/products/2026-death-wish-coffee-mug\nBaba Yaga Mug | $38.00 | https://www.deathwishcoffee.com/products/baba-yaga-mug"
+    },
+    {
+     "role": "tool",
+     "tool_call_id": "call_4",
+     "content": "Valet Tray (Maple - Medium) | $79.00 | https://ugmonk.com/products/valet-tray-maple-medium\nThe Complete Analog Collection (Silver Aluminum) | $449.00 | https://ugmonk.com/products/the-complete-analog-aluminum-suite-silver-aluminum\nValet Tray (Maple - Small) | $69.00 | https://ugmonk.com/products/valet-tray-maple-small"
+    }
+   ],
+   "tools": [
+    {
+     "type": "function",
+     "function": {
+      "name": "shop",
+      "description": "Search one real online store live and get in-stock products as \"title | price | product page URL\" lines. Stores: stanley (tumblers, drinkware); brooklinen (robes, bedding, towels); allbirds (wool shoes, slippers); deathwish (coffee, mugs); leatherman (multitools, knives); ugmonk (desk organizers); puravida (bracelets, jewelry); colourpop (makeup); taylorstitch (menswear); kylie (cosmetics).",
+      "parameters": {
+       "type": "object",
+       "properties": {
+        "store": {
+         "type": "string",
+         "enum": [
+          "stanley",
+          "brooklinen",
+          "allbirds",
+          "deathwish",
+          "leatherman",
+          "ugmonk",
+          "puravida",
+          "colourpop",
+          "taylorstitch",
+          "kylie"
+         ]
+        },
+        "q": {
+         "type": "string",
+         "description": "Search word, e.g. robe"
+        }
+       },
+       "required": [
+        "store",
+        "q"
+       ],
+       "additionalProperties": false
+      }
+     }
+    }
+   ]
+  }
+ },
+ {
+  "name": "final-lines",
+  "body": {
+   "temperature": 1,
+   "reasoning_effort": "low",
+   "max_completion_tokens": 1024,
+   "messages": [
+    {
+     "role": "system",
+     "content": "Final answer format: exactly five lines, one product per store, each line copied verbatim from the tool output. No other text."
+    },
+    {
+     "role": "user",
+     "content": "Find five Christmas gifts from real shopping websites. Give each product with its product page link."
+    },
+    {
+     "role": "assistant",
+     "content": "",
+     "tool_calls": [
+      {
+       "id": "call_0",
+       "type": "function",
+       "function": {
+        "name": "shop",
+        "arguments": "{\"store\":\"stanley\",\"q\":\"holiday\"}"
+       }
+      },
+      {
+       "id": "call_1",
+       "type": "function",
+       "function": {
+        "name": "shop",
+        "arguments": "{\"store\":\"brooklinen\",\"q\":\"robe\"}"
+       }
+      },
+      {
+       "id": "call_2",
+       "type": "function",
+       "function": {
+        "name": "shop",
+        "arguments": "{\"store\":\"leatherman\",\"q\":\"multitool\"}"
+       }
+      },
+      {
+       "id": "call_3",
+       "type": "function",
+       "function": {
+        "name": "shop",
+        "arguments": "{\"store\":\"deathwish\",\"q\":\"mug\"}"
+       }
+      },
+      {
+       "id": "call_4",
+       "type": "function",
+       "function": {
+        "name": "shop",
+        "arguments": "{\"store\":\"ugmonk\",\"q\":\"desk\"}"
+       }
+      }
+     ]
+    },
+    {
+     "role": "tool",
+     "tool_call_id": "call_0",
+     "content": "Stanley 1913 x FARM Rio Quencher® H2.O Ornament Set | $50.00 | https://www.stanley1913.com/products/the-quencher%C2%AE-h2-o-ornament-set\nThe Stay-Hot Camp Mug | 24 OZ | $35.00 | https://www.stanley1913.com/products/the-everyday-suburban-mug-24-oz-0-71-l\nStanley 1913 x FARM Rio Quencher® ProTour Flip Straw Tumbler Set | 30 OZ & 20 OZ | $100.00 | https://www.stanley1913.com/products/the-quencher%C2%AE-protour-flip-straw-tumbler-set-30-oz-20-oz"
+    },
+    {
+     "role": "tool",
+     "tool_call_id": "call_1",
+     "content": "Super-Plush Robe | $139.00 | https://www.brooklinen.com/products/super-plush-robe\nSuper-Plush Shorty Robe - Last Call | $55.60 | https://www.brooklinen.com/products/super-plush-shorty-robe-last-call\nDreamweave Waffle Robe | $129.00 | https://www.brooklinen.com/products/waffle-robe"
+    },
+    {
+     "role": "tool",
+     "tool_call_id": "call_2",
+     "content": "MUT® EOD | $229.95 | https://www.leatherman.com/products/mut-eod\nSkeletool® | $74.95 | https://www.leatherman.com/products/skeletool\nWave® Plus | $129.95 | https://www.leatherman.com/products/wave"
+    },
+    {
+     "role": "tool",
+     "tool_call_id": "call_3",
+     "content": "Ride or Die Mug | $38.00 | https://www.deathwishcoffee.com/products/ride-or-die-mug\n2026 Death Wish Coffee Mug | $38.00 | https://www.deathwishcoffee.com/products/2026-death-wish-coffee-mug\nBaba Yaga Mug | $38.00 | https://www.deathwishcoffee.com/products/baba-yaga-mug"
+    },
+    {
+     "role": "tool",
+     "tool_call_id": "call_4",
+     "content": "Valet Tray (Maple - Medium) | $79.00 | https://ugmonk.com/products/valet-tray-maple-medium\nThe Complete Analog Collection (Silver Aluminum) | $449.00 | https://ugmonk.com/products/the-complete-analog-aluminum-suite-silver-aluminum\nValet Tray (Maple - Small) | $69.00 | https://ugmonk.com/products/valet-tray-maple-small"
+    }
+   ],
+   "tools": [
+    {
+     "type": "function",
+     "function": {
+      "name": "shop",
+      "description": "Search one real online store live and get in-stock products as \"title | price | product page URL\" lines. Stores: stanley (tumblers, drinkware); brooklinen (robes, bedding, towels); allbirds (wool shoes, slippers); deathwish (coffee, mugs); leatherman (multitools, knives); ugmonk (desk organizers); puravida (bracelets, jewelry); colourpop (makeup); taylorstitch (menswear); kylie (cosmetics).",
+      "parameters": {
+       "type": "object",
+       "properties": {
+        "store": {
+         "type": "string",
+         "enum": [
+          "stanley",
+          "brooklinen",
+          "allbirds",
+          "deathwish",
+          "leatherman",
+          "ugmonk",
+          "puravida",
+          "colourpop",
+          "taylorstitch",
+          "kylie"
+         ]
+        },
+        "q": {
+         "type": "string",
+         "description": "Search word, e.g. robe"
+        }
+       },
+       "required": [
+        "store",
+        "q"
+       ],
+       "additionalProperties": false
+      }
+     }
+    }
+   ]
+  }
+ },
+ {
+  "name": "final-md",
+  "body": {
+   "temperature": 1,
+   "reasoning_effort": "low",
+   "max_completion_tokens": 1024,
+   "messages": [
+    {
+     "role": "system",
+     "content": "Final answer format: exactly five lines, one product per store, each as `- [title](url) price` using the title, URL and price exactly as given by the tool. No other text."
+    },
+    {
+     "role": "user",
+     "content": "Find five Christmas gifts from real shopping websites. Give each product with its product page link."
+    },
+    {
+     "role": "assistant",
+     "content": "",
+     "tool_calls": [
+      {
+       "id": "call_0",
+       "type": "function",
+       "function": {
+        "name": "shop",
+        "arguments": "{\"store\":\"stanley\",\"q\":\"holiday\"}"
+       }
+      },
+      {
+       "id": "call_1",
+       "type": "function",
+       "function": {
+        "name": "shop",
+        "arguments": "{\"store\":\"brooklinen\",\"q\":\"robe\"}"
+       }
+      },
+      {
+       "id": "call_2",
+       "type": "function",
+       "function": {
+        "name": "shop",
+        "arguments": "{\"store\":\"leatherman\",\"q\":\"multitool\"}"
+       }
+      },
+      {
+       "id": "call_3",
+       "type": "function",
+       "function": {
+        "name": "shop",
+        "arguments": "{\"store\":\"deathwish\",\"q\":\"mug\"}"
+       }
+      },
+      {
+       "id": "call_4",
+       "type": "function",
+       "function": {
+        "name": "shop",
+        "arguments": "{\"store\":\"ugmonk\",\"q\":\"desk\"}"
+       }
+      }
+     ]
+    },
+    {
+     "role": "tool",
+     "tool_call_id": "call_0",
+     "content": "Stanley 1913 x FARM Rio Quencher® H2.O Ornament Set | $50.00 | https://www.stanley1913.com/products/the-quencher%C2%AE-h2-o-ornament-set\nThe Stay-Hot Camp Mug | 24 OZ | $35.00 | https://www.stanley1913.com/products/the-everyday-suburban-mug-24-oz-0-71-l\nStanley 1913 x FARM Rio Quencher® ProTour Flip Straw Tumbler Set | 30 OZ & 20 OZ | $100.00 | https://www.stanley1913.com/products/the-quencher%C2%AE-protour-flip-straw-tumbler-set-30-oz-20-oz"
+    },
+    {
+     "role": "tool",
+     "tool_call_id": "call_1",
+     "content": "Super-Plush Robe | $139.00 | https://www.brooklinen.com/products/super-plush-robe\nSuper-Plush Shorty Robe - Last Call | $55.60 | https://www.brooklinen.com/products/super-plush-shorty-robe-last-call\nDreamweave Waffle Robe | $129.00 | https://www.brooklinen.com/products/waffle-robe"
+    },
+    {
+     "role": "tool",
+     "tool_call_id": "call_2",
+     "content": "MUT® EOD | $229.95 | https://www.leatherman.com/products/mut-eod\nSkeletool® | $74.95 | https://www.leatherman.com/products/skeletool\nWave® Plus | $129.95 | https://www.leatherman.com/products/wave"
+    },
+    {
+     "role": "tool",
+     "tool_call_id": "call_3",
+     "content": "Ride or Die Mug | $38.00 | https://www.deathwishcoffee.com/products/ride-or-die-mug\n2026 Death Wish Coffee Mug | $38.00 | https://www.deathwishcoffee.com/products/2026-death-wish-coffee-mug\nBaba Yaga Mug | $38.00 | https://www.deathwishcoffee.com/products/baba-yaga-mug"
+    },
+    {
+     "role": "tool",
+     "tool_call_id": "call_4",
+     "content": "Valet Tray (Maple - Medium) | $79.00 | https://ugmonk.com/products/valet-tray-maple-medium\nThe Complete Analog Collection (Silver Aluminum) | $449.00 | https://ugmonk.com/products/the-complete-analog-aluminum-suite-silver-aluminum\nValet Tray (Maple - Small) | $69.00 | https://ugmonk.com/products/valet-tray-maple-small"
+    }
+   ],
+   "tools": [
+    {
+     "type": "function",
+     "function": {
+      "name": "shop",
+      "description": "Search one real online store live and get in-stock products as \"title | price | product page URL\" lines. Stores: stanley (tumblers, drinkware); brooklinen (robes, bedding, towels); allbirds (wool shoes, slippers); deathwish (coffee, mugs); leatherman (multitools, knives); ugmonk (desk organizers); puravida (bracelets, jewelry); colourpop (makeup); taylorstitch (menswear); kylie (cosmetics).",
+      "parameters": {
+       "type": "object",
+       "properties": {
+        "store": {
+         "type": "string",
+         "enum": [
+          "stanley",
+          "brooklinen",
+          "allbirds",
+          "deathwish",
+          "leatherman",
+          "ugmonk",
+          "puravida",
+          "colourpop",
+          "taylorstitch",
+          "kylie"
+         ]
+        },
+        "q": {
+         "type": "string",
+         "description": "Search word, e.g. robe"
+        }
+       },
+       "required": [
+        "store",
+        "q"
+       ],
+       "additionalProperties": false
+      }
+     }
+    }
+   ]
+  }
+ },
+ {
+  "name": "final-terse",
+  "body": {
+   "temperature": 1,
+   "reasoning_effort": "low",
+   "max_completion_tokens": 1024,
+   "messages": [
+    {
+     "role": "system",
+     "content": "Be terse. Do not deliberate. Final answer format: exactly five lines, one product per store, each line copied verbatim from the tool output. No other text."
+    },
+    {
+     "role": "user",
+     "content": "Find five Christmas gifts from real shopping websites. Give each product with its product page link."
+    },
+    {
+     "role": "assistant",
+     "content": "",
+     "tool_calls": [
+      {
+       "id": "call_0",
+       "type": "function",
+       "function": {
+        "name": "shop",
+        "arguments": "{\"store\":\"stanley\",\"q\":\"holiday\"}"
+       }
+      },
+      {
+       "id": "call_1",
+       "type": "function",
+       "function": {
+        "name": "shop",
+        "arguments": "{\"store\":\"brooklinen\",\"q\":\"robe\"}"
+       }
+      },
+      {
+       "id": "call_2",
+       "type": "function",
+       "function": {
+        "name": "shop",
+        "arguments": "{\"store\":\"leatherman\",\"q\":\"multitool\"}"
+       }
+      },
+      {
+       "id": "call_3",
+       "type": "function",
+       "function": {
+        "name": "shop",
+        "arguments": "{\"store\":\"deathwish\",\"q\":\"mug\"}"
+       }
+      },
+      {
+       "id": "call_4",
+       "type": "function",
+       "function": {
+        "name": "shop",
+        "arguments": "{\"store\":\"ugmonk\",\"q\":\"desk\"}"
+       }
+      }
+     ]
+    },
+    {
+     "role": "tool",
+     "tool_call_id": "call_0",
+     "content": "Stanley 1913 x FARM Rio Quencher® H2.O Ornament Set | $50.00 | https://www.stanley1913.com/products/the-quencher%C2%AE-h2-o-ornament-set\nThe Stay-Hot Camp Mug | 24 OZ | $35.00 | https://www.stanley1913.com/products/the-everyday-suburban-mug-24-oz-0-71-l\nStanley 1913 x FARM Rio Quencher® ProTour Flip Straw Tumbler Set | 30 OZ & 20 OZ | $100.00 | https://www.stanley1913.com/products/the-quencher%C2%AE-protour-flip-straw-tumbler-set-30-oz-20-oz"
+    },
+    {
+     "role": "tool",
+     "tool_call_id": "call_1",
+     "content": "Super-Plush Robe | $139.00 | https://www.brooklinen.com/products/super-plush-robe\nSuper-Plush Shorty Robe - Last Call | $55.60 | https://www.brooklinen.com/products/super-plush-shorty-robe-last-call\nDreamweave Waffle Robe | $129.00 | https://www.brooklinen.com/products/waffle-robe"
+    },
+    {
+     "role": "tool",
+     "tool_call_id": "call_2",
+     "content": "MUT® EOD | $229.95 | https://www.leatherman.com/products/mut-eod\nSkeletool® | $74.95 | https://www.leatherman.com/products/skeletool\nWave® Plus | $129.95 | https://www.leatherman.com/products/wave"
+    },
+    {
+     "role": "tool",
+     "tool_call_id": "call_3",
+     "content": "Ride or Die Mug | $38.00 | https://www.deathwishcoffee.com/products/ride-or-die-mug\n2026 Death Wish Coffee Mug | $38.00 | https://www.deathwishcoffee.com/products/2026-death-wish-coffee-mug\nBaba Yaga Mug | $38.00 | https://www.deathwishcoffee.com/products/baba-yaga-mug"
+    },
+    {
+     "role": "tool",
+     "tool_call_id": "call_4",
+     "content": "Valet Tray (Maple - Medium) | $79.00 | https://ugmonk.com/products/valet-tray-maple-medium\nThe Complete Analog Collection (Silver Aluminum) | $449.00 | https://ugmonk.com/products/the-complete-analog-aluminum-suite-silver-aluminum\nValet Tray (Maple - Small) | $69.00 | https://ugmonk.com/products/valet-tray-maple-small"
+    }
+   ],
+   "tools": [
+    {
+     "type": "function",
+     "function": {
+      "name": "shop",
+      "description": "Search one real online store live and get in-stock products as \"title | price | product page URL\" lines. Stores: stanley (tumblers, drinkware); brooklinen (robes, bedding, towels); allbirds (wool shoes, slippers); deathwish (coffee, mugs); leatherman (multitools, knives); ugmonk (desk organizers); puravida (bracelets, jewelry); colourpop (makeup); taylorstitch (menswear); kylie (cosmetics).",
+      "parameters": {
+       "type": "object",
+       "properties": {
+        "store": {
+         "type": "string",
+         "enum": [
+          "stanley",
+          "brooklinen",
+          "allbirds",
+          "deathwish",
+          "leatherman",
+          "ugmonk",
+          "puravida",
+          "colourpop",
+          "taylorstitch",
+          "kylie"
+         ]
+        },
+        "q": {
+         "type": "string",
+         "description": "Search word, e.g. robe"
+        }
+       },
+       "required": [
+        "store",
+        "q"
+       ],
+       "additionalProperties": false
+      }
+     }
+    }
+   ]
+  }
+ },
+ {
+  "name": "final-lines-t0",
+  "body": {
+   "temperature": 0,
+   "reasoning_effort": "low",
+   "max_completion_tokens": 1024,
+   "messages": [
+    {
+     "role": "system",
+     "content": "Final answer format: exactly five lines, one product per store, each line copied verbatim from the tool output. No other text."
+    },
+    {
+     "role": "user",
+     "content": "Find five Christmas gifts from real shopping websites. Give each product with its product page link."
+    },
+    {
+     "role": "assistant",
+     "content": "",
+     "tool_calls": [
+      {
+       "id": "call_0",
+       "type": "function",
+       "function": {
+        "name": "shop",
+        "arguments": "{\"store\":\"stanley\",\"q\":\"holiday\"}"
+       }
+      },
+      {
+       "id": "call_1",
+       "type": "function",
+       "function": {
+        "name": "shop",
+        "arguments": "{\"store\":\"brooklinen\",\"q\":\"robe\"}"
+       }
+      },
+      {
+       "id": "call_2",
+       "type": "function",
+       "function": {
+        "name": "shop",
+        "arguments": "{\"store\":\"leatherman\",\"q\":\"multitool\"}"
+       }
+      },
+      {
+       "id": "call_3",
+       "type": "function",
+       "function": {
+        "name": "shop",
+        "arguments": "{\"store\":\"deathwish\",\"q\":\"mug\"}"
+       }
+      },
+      {
+       "id": "call_4",
+       "type": "function",
+       "function": {
+        "name": "shop",
+        "arguments": "{\"store\":\"ugmonk\",\"q\":\"desk\"}"
+       }
+      }
+     ]
+    },
+    {
+     "role": "tool",
+     "tool_call_id": "call_0",
+     "content": "Stanley 1913 x FARM Rio Quencher® H2.O Ornament Set | $50.00 | https://www.stanley1913.com/products/the-quencher%C2%AE-h2-o-ornament-set\nThe Stay-Hot Camp Mug | 24 OZ | $35.00 | https://www.stanley1913.com/products/the-everyday-suburban-mug-24-oz-0-71-l\nStanley 1913 x FARM Rio Quencher® ProTour Flip Straw Tumbler Set | 30 OZ & 20 OZ | $100.00 | https://www.stanley1913.com/products/the-quencher%C2%AE-protour-flip-straw-tumbler-set-30-oz-20-oz"
+    },
+    {
+     "role": "tool",
+     "tool_call_id": "call_1",
+     "content": "Super-Plush Robe | $139.00 | https://www.brooklinen.com/products/super-plush-robe\nSuper-Plush Shorty Robe - Last Call | $55.60 | https://www.brooklinen.com/products/super-plush-shorty-robe-last-call\nDreamweave Waffle Robe | $129.00 | https://www.brooklinen.com/products/waffle-robe"
+    },
+    {
+     "role": "tool",
+     "tool_call_id": "call_2",
+     "content": "MUT® EOD | $229.95 | https://www.leatherman.com/products/mut-eod\nSkeletool® | $74.95 | https://www.leatherman.com/products/skeletool\nWave® Plus | $129.95 | https://www.leatherman.com/products/wave"
+    },
+    {
+     "role": "tool",
+     "tool_call_id": "call_3",
+     "content": "Ride or Die Mug | $38.00 | https://www.deathwishcoffee.com/products/ride-or-die-mug\n2026 Death Wish Coffee Mug | $38.00 | https://www.deathwishcoffee.com/products/2026-death-wish-coffee-mug\nBaba Yaga Mug | $38.00 | https://www.deathwishcoffee.com/products/baba-yaga-mug"
+    },
+    {
+     "role": "tool",
+     "tool_call_id": "call_4",
+     "content": "Valet Tray (Maple - Medium) | $79.00 | https://ugmonk.com/products/valet-tray-maple-medium\nThe Complete Analog Collection (Silver Aluminum) | $449.00 | https://ugmonk.com/products/the-complete-analog-aluminum-suite-silver-aluminum\nValet Tray (Maple - Small) | $69.00 | https://ugmonk.com/products/valet-tray-maple-small"
+    }
+   ],
+   "tools": [
+    {
+     "type": "function",
+     "function": {
+      "name": "shop",
+      "description": "Search one real online store live and get in-stock products as \"title | price | product page URL\" lines. Stores: stanley (tumblers, drinkware); brooklinen (robes, bedding, towels); allbirds (wool shoes, slippers); deathwish (coffee, mugs); leatherman (multitools, knives); ugmonk (desk organizers); puravida (bracelets, jewelry); colourpop (makeup); taylorstitch (menswear); kylie (cosmetics).",
+      "parameters": {
+       "type": "object",
+       "properties": {
+        "store": {
+         "type": "string",
+         "enum": [
+          "stanley",
+          "brooklinen",
+          "allbirds",
+          "deathwish",
+          "leatherman",
+          "ugmonk",
+          "puravida",
+          "colourpop",
+          "taylorstitch",
+          "kylie"
+         ]
+        },
+        "q": {
+         "type": "string",
+         "description": "Search word, e.g. robe"
+        }
+       },
+       "required": [
+        "store",
+        "q"
+       ],
+       "additionalProperties": false
+      }
+     }
+    }
+   ]
+  }
+ },
+ {
+  "name": "final-lines-high",
+  "body": {
+   "temperature": 1,
+   "reasoning_effort": "high",
+   "max_completion_tokens": 1024,
+   "messages": [
+    {
+     "role": "system",
+     "content": "Final answer format: exactly five lines, one product per store, each line copied verbatim from the tool output. No other text."
+    },
+    {
+     "role": "user",
+     "content": "Find five Christmas gifts from real shopping websites. Give each product with its product page link."
+    },
+    {
+     "role": "assistant",
+     "content": "",
+     "tool_calls": [
+      {
+       "id": "call_0",
+       "type": "function",
+       "function": {
+        "name": "shop",
+        "arguments": "{\"store\":\"stanley\",\"q\":\"holiday\"}"
+       }
+      },
+      {
+       "id": "call_1",
+       "type": "function",
+       "function": {
+        "name": "shop",
+        "arguments": "{\"store\":\"brooklinen\",\"q\":\"robe\"}"
+       }
+      },
+      {
+       "id": "call_2",
+       "type": "function",
+       "function": {
+        "name": "shop",
+        "arguments": "{\"store\":\"leatherman\",\"q\":\"multitool\"}"
+       }
+      },
+      {
+       "id": "call_3",
+       "type": "function",
+       "function": {
+        "name": "shop",
+        "arguments": "{\"store\":\"deathwish\",\"q\":\"mug\"}"
+       }
+      },
+      {
+       "id": "call_4",
+       "type": "function",
+       "function": {
+        "name": "shop",
+        "arguments": "{\"store\":\"ugmonk\",\"q\":\"desk\"}"
+       }
+      }
+     ]
+    },
+    {
+     "role": "tool",
+     "tool_call_id": "call_0",
+     "content": "Stanley 1913 x FARM Rio Quencher® H2.O Ornament Set | $50.00 | https://www.stanley1913.com/products/the-quencher%C2%AE-h2-o-ornament-set\nThe Stay-Hot Camp Mug | 24 OZ | $35.00 | https://www.stanley1913.com/products/the-everyday-suburban-mug-24-oz-0-71-l\nStanley 1913 x FARM Rio Quencher® ProTour Flip Straw Tumbler Set | 30 OZ & 20 OZ | $100.00 | https://www.stanley1913.com/products/the-quencher%C2%AE-protour-flip-straw-tumbler-set-30-oz-20-oz"
+    },
+    {
+     "role": "tool",
+     "tool_call_id": "call_1",
+     "content": "Super-Plush Robe | $139.00 | https://www.brooklinen.com/products/super-plush-robe\nSuper-Plush Shorty Robe - Last Call | $55.60 | https://www.brooklinen.com/products/super-plush-shorty-robe-last-call\nDreamweave Waffle Robe | $129.00 | https://www.brooklinen.com/products/waffle-robe"
+    },
+    {
+     "role": "tool",
+     "tool_call_id": "call_2",
+     "content": "MUT® EOD | $229.95 | https://www.leatherman.com/products/mut-eod\nSkeletool® | $74.95 | https://www.leatherman.com/products/skeletool\nWave® Plus | $129.95 | https://www.leatherman.com/products/wave"
+    },
+    {
+     "role": "tool",
+     "tool_call_id": "call_3",
+     "content": "Ride or Die Mug | $38.00 | https://www.deathwishcoffee.com/products/ride-or-die-mug\n2026 Death Wish Coffee Mug | $38.00 | https://www.deathwishcoffee.com/products/2026-death-wish-coffee-mug\nBaba Yaga Mug | $38.00 | https://www.deathwishcoffee.com/products/baba-yaga-mug"
+    },
+    {
+     "role": "tool",
+     "tool_call_id": "call_4",
+     "content": "Valet Tray (Maple - Medium) | $79.00 | https://ugmonk.com/products/valet-tray-maple-medium\nThe Complete Analog Collection (Silver Aluminum) | $449.00 | https://ugmonk.com/products/the-complete-analog-aluminum-suite-silver-aluminum\nValet Tray (Maple - Small) | $69.00 | https://ugmonk.com/products/valet-tray-maple-small"
+    }
+   ],
+   "tools": [
+    {
+     "type": "function",
+     "function": {
+      "name": "shop",
+      "description": "Search one real online store live and get in-stock products as \"title | price | product page URL\" lines. Stores: stanley (tumblers, drinkware); brooklinen (robes, bedding, towels); allbirds (wool shoes, slippers); deathwish (coffee, mugs); leatherman (multitools, knives); ugmonk (desk organizers); puravida (bracelets, jewelry); colourpop (makeup); taylorstitch (menswear); kylie (cosmetics).",
+      "parameters": {
+       "type": "object",
+       "properties": {
+        "store": {
+         "type": "string",
+         "enum": [
+          "stanley",
+          "brooklinen",
+          "allbirds",
+          "deathwish",
+          "leatherman",
+          "ugmonk",
+          "puravida",
+          "colourpop",
+          "taylorstitch",
+          "kylie"
+         ]
+        },
+        "q": {
+         "type": "string",
+         "description": "Search word, e.g. robe"
+        }
+       },
+       "required": [
+        "store",
+        "q"
+       ],
+       "additionalProperties": false
+      }
+     }
+    }
+   ]
+  }
+ },
+ {
+  "name": "final-lines-noeffort",
+  "body": {
+   "temperature": 1,
+   "max_completion_tokens": 1024,
+   "messages": [
+    {
+     "role": "system",
+     "content": "Final answer format: exactly five lines, one product per store, each line copied verbatim from the tool output. No other text."
+    },
+    {
+     "role": "user",
+     "content": "Find five Christmas gifts from real shopping websites. Give each product with its product page link."
+    },
+    {
+     "role": "assistant",
+     "content": "",
+     "tool_calls": [
+      {
+       "id": "call_0",
+       "type": "function",
+       "function": {
+        "name": "shop",
+        "arguments": "{\"store\":\"stanley\",\"q\":\"holiday\"}"
+       }
+      },
+      {
+       "id": "call_1",
+       "type": "function",
+       "function": {
+        "name": "shop",
+        "arguments": "{\"store\":\"brooklinen\",\"q\":\"robe\"}"
+       }
+      },
+      {
+       "id": "call_2",
+       "type": "function",
+       "function": {
+        "name": "shop",
+        "arguments": "{\"store\":\"leatherman\",\"q\":\"multitool\"}"
+       }
+      },
+      {
+       "id": "call_3",
+       "type": "function",
+       "function": {
+        "name": "shop",
+        "arguments": "{\"store\":\"deathwish\",\"q\":\"mug\"}"
+       }
+      },
+      {
+       "id": "call_4",
+       "type": "function",
+       "function": {
+        "name": "shop",
+        "arguments": "{\"store\":\"ugmonk\",\"q\":\"desk\"}"
+       }
+      }
+     ]
+    },
+    {
+     "role": "tool",
+     "tool_call_id": "call_0",
+     "content": "Stanley 1913 x FARM Rio Quencher® H2.O Ornament Set | $50.00 | https://www.stanley1913.com/products/the-quencher%C2%AE-h2-o-ornament-set\nThe Stay-Hot Camp Mug | 24 OZ | $35.00 | https://www.stanley1913.com/products/the-everyday-suburban-mug-24-oz-0-71-l\nStanley 1913 x FARM Rio Quencher® ProTour Flip Straw Tumbler Set | 30 OZ & 20 OZ | $100.00 | https://www.stanley1913.com/products/the-quencher%C2%AE-protour-flip-straw-tumbler-set-30-oz-20-oz"
+    },
+    {
+     "role": "tool",
+     "tool_call_id": "call_1",
+     "content": "Super-Plush Robe | $139.00 | https://www.brooklinen.com/products/super-plush-robe\nSuper-Plush Shorty Robe - Last Call | $55.60 | https://www.brooklinen.com/products/super-plush-shorty-robe-last-call\nDreamweave Waffle Robe | $129.00 | https://www.brooklinen.com/products/waffle-robe"
+    },
+    {
+     "role": "tool",
+     "tool_call_id": "call_2",
+     "content": "MUT® EOD | $229.95 | https://www.leatherman.com/products/mut-eod\nSkeletool® | $74.95 | https://www.leatherman.com/products/skeletool\nWave® Plus | $129.95 | https://www.leatherman.com/products/wave"
+    },
+    {
+     "role": "tool",
+     "tool_call_id": "call_3",
+     "content": "Ride or Die Mug | $38.00 | https://www.deathwishcoffee.com/products/ride-or-die-mug\n2026 Death Wish Coffee Mug | $38.00 | https://www.deathwishcoffee.com/products/2026-death-wish-coffee-mug\nBaba Yaga Mug | $38.00 | https://www.deathwishcoffee.com/products/baba-yaga-mug"
+    },
+    {
+     "role": "tool",
+     "tool_call_id": "call_4",
+     "content": "Valet Tray (Maple - Medium) | $79.00 | https://ugmonk.com/products/valet-tray-maple-medium\nThe Complete Analog Collection (Silver Aluminum) | $449.00 | https://ugmonk.com/products/the-complete-analog-aluminum-suite-silver-aluminum\nValet Tray (Maple - Small) | $69.00 | https://ugmonk.com/products/valet-tray-maple-small"
+    }
+   ],
+   "tools": [
+    {
+     "type": "function",
+     "function": {
+      "name": "shop",
+      "description": "Search one real online store live and get in-stock products as \"title | price | product page URL\" lines. Stores: stanley (tumblers, drinkware); brooklinen (robes, bedding, towels); allbirds (wool shoes, slippers); deathwish (coffee, mugs); leatherman (multitools, knives); ugmonk (desk organizers); puravida (bracelets, jewelry); colourpop (makeup); taylorstitch (menswear); kylie (cosmetics).",
+      "parameters": {
+       "type": "object",
+       "properties": {
+        "store": {
+         "type": "string",
+         "enum": [
+          "stanley",
+          "brooklinen",
+          "allbirds",
+          "deathwish",
+          "leatherman",
+          "ugmonk",
+          "puravida",
+          "colourpop",
+          "taylorstitch",
+          "kylie"
+         ]
+        },
+        "q": {
+         "type": "string",
+         "description": "Search word, e.g. robe"
+        }
+       },
+       "required": [
+        "store",
+        "q"
+       ],
+       "additionalProperties": false
+      }
+     }
+    }
+   ]
+  }
+ },
+ {
+  "name": "copy-all15",
+  "body": {
+   "temperature": 1,
+   "reasoning_effort": "low",
+   "max_completion_tokens": 1024,
+   "messages": [
+    {
+     "role": "system",
+     "content": "Final answer: output every line of every tool result verbatim, in order. No other text."
+    },
+    {
+     "role": "user",
+     "content": "Find five Christmas gifts from real shopping websites. Give each product with its product page link."
+    },
+    {
+     "role": "assistant",
+     "content": "",
+     "tool_calls": [
+      {
+       "id": "call_0",
+       "type": "function",
+       "function": {
+        "name": "shop",
+        "arguments": "{\"store\":\"stanley\",\"q\":\"holiday\"}"
+       }
+      },
+      {
+       "id": "call_1",
+       "type": "function",
+       "function": {
+        "name": "shop",
+        "arguments": "{\"store\":\"brooklinen\",\"q\":\"robe\"}"
+       }
+      },
+      {
+       "id": "call_2",
+       "type": "function",
+       "function": {
+        "name": "shop",
+        "arguments": "{\"store\":\"leatherman\",\"q\":\"multitool\"}"
+       }
+      },
+      {
+       "id": "call_3",
+       "type": "function",
+       "function": {
+        "name": "shop",
+        "arguments": "{\"store\":\"deathwish\",\"q\":\"mug\"}"
+       }
+      },
+      {
+       "id": "call_4",
+       "type": "function",
+       "function": {
+        "name": "shop",
+        "arguments": "{\"store\":\"ugmonk\",\"q\":\"desk\"}"
+       }
+      }
+     ]
+    },
+    {
+     "role": "tool",
+     "tool_call_id": "call_0",
+     "content": "Stanley 1913 x FARM Rio Quencher® H2.O Ornament Set | $50.00 | https://www.stanley1913.com/products/the-quencher%C2%AE-h2-o-ornament-set\nThe Stay-Hot Camp Mug | 24 OZ | $35.00 | https://www.stanley1913.com/products/the-everyday-suburban-mug-24-oz-0-71-l\nStanley 1913 x FARM Rio Quencher® ProTour Flip Straw Tumbler Set | 30 OZ & 20 OZ | $100.00 | https://www.stanley1913.com/products/the-quencher%C2%AE-protour-flip-straw-tumbler-set-30-oz-20-oz"
+    },
+    {
+     "role": "tool",
+     "tool_call_id": "call_1",
+     "content": "Super-Plush Robe | $139.00 | https://www.brooklinen.com/products/super-plush-robe\nSuper-Plush Shorty Robe - Last Call | $55.60 | https://www.brooklinen.com/products/super-plush-shorty-robe-last-call\nDreamweave Waffle Robe | $129.00 | https://www.brooklinen.com/products/waffle-robe"
+    },
+    {
+     "role": "tool",
+     "tool_call_id": "call_2",
+     "content": "MUT® EOD | $229.95 | https://www.leatherman.com/products/mut-eod\nSkeletool® | $74.95 | https://www.leatherman.com/products/skeletool\nWave® Plus | $129.95 | https://www.leatherman.com/products/wave"
+    },
+    {
+     "role": "tool",
+     "tool_call_id": "call_3",
+     "content": "Ride or Die Mug | $38.00 | https://www.deathwishcoffee.com/products/ride-or-die-mug\n2026 Death Wish Coffee Mug | $38.00 | https://www.deathwishcoffee.com/products/2026-death-wish-coffee-mug\nBaba Yaga Mug | $38.00 | https://www.deathwishcoffee.com/products/baba-yaga-mug"
+    },
+    {
+     "role": "tool",
+     "tool_call_id": "call_4",
+     "content": "Valet Tray (Maple - Medium) | $79.00 | https://ugmonk.com/products/valet-tray-maple-medium\nThe Complete Analog Collection (Silver Aluminum) | $449.00 | https://ugmonk.com/products/the-complete-analog-aluminum-suite-silver-aluminum\nValet Tray (Maple - Small) | $69.00 | https://ugmonk.com/products/valet-tray-maple-small"
+    }
+   ],
+   "tools": [
+    {
+     "type": "function",
+     "function": {
+      "name": "shop",
+      "description": "Search one real online store live and get in-stock products as \"title | price | product page URL\" lines. Stores: stanley (tumblers, drinkware); brooklinen (robes, bedding, towels); allbirds (wool shoes, slippers); deathwish (coffee, mugs); leatherman (multitools, knives); ugmonk (desk organizers); puravida (bracelets, jewelry); colourpop (makeup); taylorstitch (menswear); kylie (cosmetics).",
+      "parameters": {
+       "type": "object",
+       "properties": {
+        "store": {
+         "type": "string",
+         "enum": [
+          "stanley",
+          "brooklinen",
+          "allbirds",
+          "deathwish",
+          "leatherman",
+          "ugmonk",
+          "puravida",
+          "colourpop",
+          "taylorstitch",
+          "kylie"
+         ]
+        },
+        "q": {
+         "type": "string",
+         "description": "Search word, e.g. robe"
+        }
+       },
+       "required": [
+        "store",
+        "q"
+       ],
+       "additionalProperties": false
+      }
+     }
+    }
+   ]
+  }
+ },
+ {
+  "name": "turn1-plain",
+  "body": {
+   "temperature": 1,
+   "reasoning_effort": "low",
+   "max_completion_tokens": 1024,
+   "messages": [
+    {
+     "role": "user",
+     "content": "Find five Christmas gifts from real shopping websites. Give each product with its product page link."
+    }
+   ],
+   "tools": [
+    {
+     "type": "function",
+     "function": {
+      "name": "shop",
+      "description": "Search one real online store live and get in-stock products as \"title | price | product page URL\" lines. Stores: stanley (tumblers, drinkware); brooklinen (robes, bedding, towels); allbirds (wool shoes, slippers); deathwish (coffee, mugs); leatherman (multitools, knives); ugmonk (desk organizers); puravida (bracelets, jewelry); colourpop (makeup); taylorstitch (menswear); kylie (cosmetics).",
+      "parameters": {
+       "type": "object",
+       "properties": {
+        "store": {
+         "type": "string",
+         "enum": [
+          "stanley",
+          "brooklinen",
+          "allbirds",
+          "deathwish",
+          "leatherman",
+          "ugmonk",
+          "puravida",
+          "colourpop",
+          "taylorstitch",
+          "kylie"
+         ]
+        },
+        "q": {
+         "type": "string",
+         "description": "Search word, e.g. robe"
+        }
+       },
+       "required": [
+        "store",
+        "q"
+       ],
+       "additionalProperties": false
+      }
+     }
+    }
+   ]
+  }
+ },
+ {
+  "name": "turn1-directed",
+  "body": {
+   "temperature": 1,
+   "reasoning_effort": "low",
+   "max_completion_tokens": 1024,
+   "messages": [
+    {
+     "role": "system",
+     "content": "Do not deliberate. Call shop for five different stores in one turn, then answer."
+    },
+    {
+     "role": "user",
+     "content": "Find five Christmas gifts from real shopping websites. Give each product with its product page link."
+    }
+   ],
+   "tools": [
+    {
+     "type": "function",
+     "function": {
+      "name": "shop",
+      "description": "Search one real online store live and get in-stock products as \"title | price | product page URL\" lines. Stores: stanley (tumblers, drinkware); brooklinen (robes, bedding, towels); allbirds (wool shoes, slippers); deathwish (coffee, mugs); leatherman (multitools, knives); ugmonk (desk organizers); puravida (bracelets, jewelry); colourpop (makeup); taylorstitch (menswear); kylie (cosmetics).",
+      "parameters": {
+       "type": "object",
+       "properties": {
+        "store": {
+         "type": "string",
+         "enum": [
+          "stanley",
+          "brooklinen",
+          "allbirds",
+          "deathwish",
+          "leatherman",
+          "ugmonk",
+          "puravida",
+          "colourpop",
+          "taylorstitch",
+          "kylie"
+         ]
+        },
+        "q": {
+         "type": "string",
+         "description": "Search word, e.g. robe"
+        }
+       },
+       "required": [
+        "store",
+        "q"
+       ],
+       "additionalProperties": false
+      }
+     }
+    }
+   ]
+  }
+ },
+ {
+  "name": "turn1-directed-t0",
+  "body": {
+   "temperature": 0,
+   "reasoning_effort": "low",
+   "max_completion_tokens": 1024,
+   "messages": [
+    {
+     "role": "system",
+     "content": "Do not deliberate. Call shop for five different stores in one turn, then answer."
+    },
+    {
+     "role": "user",
+     "content": "Find five Christmas gifts from real shopping websites. Give each product with its product page link."
+    }
+   ],
+   "tools": [
+    {
+     "type": "function",
+     "function": {
+      "name": "shop",
+      "description": "Search one real online store live and get in-stock products as \"title | price | product page URL\" lines. Stores: stanley (tumblers, drinkware); brooklinen (robes, bedding, towels); allbirds (wool shoes, slippers); deathwish (coffee, mugs); leatherman (multitools, knives); ugmonk (desk organizers); puravida (bracelets, jewelry); colourpop (makeup); taylorstitch (menswear); kylie (cosmetics).",
+      "parameters": {
+       "type": "object",
+       "properties": {
+        "store": {
+         "type": "string",
+         "enum": [
+          "stanley",
+          "brooklinen",
+          "allbirds",
+          "deathwish",
+          "leatherman",
+          "ugmonk",
+          "puravida",
+          "colourpop",
+          "taylorstitch",
+          "kylie"
+         ]
+        },
+        "q": {
+         "type": "string",
+         "description": "Search word, e.g. robe"
+        }
+       },
+       "required": [
+        "store",
+        "q"
+       ],
+       "additionalProperties": false
+      }
+     }
+    }
+   ]
+  }
+ },
+ {
+  "name": "verify-links",
+  "body": {
+   "temperature": 1,
+   "reasoning_effort": "low",
+   "max_completion_tokens": 1024,
+   "messages": [
+    {
+     "role": "system",
+     "content": "After searching, pick one product per store and call check_links once with the five chosen product URLs before answering. Do not deliberate."
+    },
+    {
+     "role": "user",
+     "content": "Find five Christmas gifts from real shopping websites. Give each product with its product page link."
+    },
+    {
+     "role": "assistant",
+     "content": "",
+     "tool_calls": [
+      {
+       "id": "call_0",
+       "type": "function",
+       "function": {
+        "name": "shop",
+        "arguments": "{\"store\":\"stanley\",\"q\":\"holiday\"}"
+       }
+      },
+      {
+       "id": "call_1",
+       "type": "function",
+       "function": {
+        "name": "shop",
+        "arguments": "{\"store\":\"brooklinen\",\"q\":\"robe\"}"
+       }
+      },
+      {
+       "id": "call_2",
+       "type": "function",
+       "function": {
+        "name": "shop",
+        "arguments": "{\"store\":\"leatherman\",\"q\":\"multitool\"}"
+       }
+      },
+      {
+       "id": "call_3",
+       "type": "function",
+       "function": {
+        "name": "shop",
+        "arguments": "{\"store\":\"deathwish\",\"q\":\"mug\"}"
+       }
+      },
+      {
+       "id": "call_4",
+       "type": "function",
+       "function": {
+        "name": "shop",
+        "arguments": "{\"store\":\"ugmonk\",\"q\":\"desk\"}"
+       }
+      }
+     ]
+    },
+    {
+     "role": "tool",
+     "tool_call_id": "call_0",
+     "content": "Stanley 1913 x FARM Rio Quencher® H2.O Ornament Set | $50.00 | https://www.stanley1913.com/products/the-quencher%C2%AE-h2-o-ornament-set\nThe Stay-Hot Camp Mug | 24 OZ | $35.00 | https://www.stanley1913.com/products/the-everyday-suburban-mug-24-oz-0-71-l\nStanley 1913 x FARM Rio Quencher® ProTour Flip Straw Tumbler Set | 30 OZ & 20 OZ | $100.00 | https://www.stanley1913.com/products/the-quencher%C2%AE-protour-flip-straw-tumbler-set-30-oz-20-oz"
+    },
+    {
+     "role": "tool",
+     "tool_call_id": "call_1",
+     "content": "Super-Plush Robe | $139.00 | https://www.brooklinen.com/products/super-plush-robe\nSuper-Plush Shorty Robe - Last Call | $55.60 | https://www.brooklinen.com/products/super-plush-shorty-robe-last-call\nDreamweave Waffle Robe | $129.00 | https://www.brooklinen.com/products/waffle-robe"
+    },
+    {
+     "role": "tool",
+     "tool_call_id": "call_2",
+     "content": "MUT® EOD | $229.95 | https://www.leatherman.com/products/mut-eod\nSkeletool® | $74.95 | https://www.leatherman.com/products/skeletool\nWave® Plus | $129.95 | https://www.leatherman.com/products/wave"
+    },
+    {
+     "role": "tool",
+     "tool_call_id": "call_3",
+     "content": "Ride or Die Mug | $38.00 | https://www.deathwishcoffee.com/products/ride-or-die-mug\n2026 Death Wish Coffee Mug | $38.00 | https://www.deathwishcoffee.com/products/2026-death-wish-coffee-mug\nBaba Yaga Mug | $38.00 | https://www.deathwishcoffee.com/products/baba-yaga-mug"
+    },
+    {
+     "role": "tool",
+     "tool_call_id": "call_4",
+     "content": "Valet Tray (Maple - Medium) | $79.00 | https://ugmonk.com/products/valet-tray-maple-medium\nThe Complete Analog Collection (Silver Aluminum) | $449.00 | https://ugmonk.com/products/the-complete-analog-aluminum-suite-silver-aluminum\nValet Tray (Maple - Small) | $69.00 | https://ugmonk.com/products/valet-tray-maple-small"
+    }
+   ],
+   "tools": [
+    {
+     "type": "function",
+     "function": {
+      "name": "shop",
+      "description": "Search one real online store live and get in-stock products as \"title | price | product page URL\" lines. Stores: stanley (tumblers, drinkware); brooklinen (robes, bedding, towels); allbirds (wool shoes, slippers); deathwish (coffee, mugs); leatherman (multitools, knives); ugmonk (desk organizers); puravida (bracelets, jewelry); colourpop (makeup); taylorstitch (menswear); kylie (cosmetics).",
+      "parameters": {
+       "type": "object",
+       "properties": {
+        "store": {
+         "type": "string",
+         "enum": [
+          "stanley",
+          "brooklinen",
+          "allbirds",
+          "deathwish",
+          "leatherman",
+          "ugmonk",
+          "puravida",
+          "colourpop",
+          "taylorstitch",
+          "kylie"
+         ]
+        },
+        "q": {
+         "type": "string",
+         "description": "Search word, e.g. robe"
+        }
+       },
+       "required": [
+        "store",
+        "q"
+       ],
+       "additionalProperties": false
+      }
+     }
+    },
+    {
+     "type": "function",
+     "function": {
+      "name": "check_links",
+      "description": "Verify that product page URLs are live. Returns HTTP status per URL.",
+      "parameters": {
+       "type": "object",
+       "properties": {
+        "urls": {
+         "type": "array",
+         "items": {
+          "type": "string"
+         }
+        }
+       },
+       "required": [
+        "urls"
+       ]
+      }
+     }
+    }
+   ]
+  }
+ }
+]

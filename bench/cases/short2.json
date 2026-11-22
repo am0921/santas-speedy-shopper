@@ -1,0 +1,742 @@
+[
+ {
+  "name": "call-terse-1",
+  "body": {
+   "temperature": 1,
+   "reasoning_effort": "low",
+   "max_completion_tokens": 1024,
+   "tools": [
+    {
+     "type": "function",
+     "function": {
+      "name": "gifts",
+      "description": "Find gifts at real online stores, live. Each item is \"store word\", e.g. \"brooklinen robe\". Returns the top in-stock product per item, one line each: \"- title price URL\". Stores: stanley (tumblers, drinkware); brooklinen (robes, bedding, towels); allbirds (wool shoes, slippers); deathwish (coffee, mugs); leatherman (multitools, knives); ugmonk (desk organizers); puravida (bracelets, jewelry); colourpop (makeup); taylorstitch (menswear); kylie (cosmetics).",
+      "parameters": {
+       "type": "object",
+       "properties": {
+        "items": {
+         "type": "array",
+         "items": {
+          "type": "string"
+         }
+        }
+       },
+       "required": [
+        "items"
+       ],
+       "additionalProperties": false
+      }
+     }
+    }
+   ],
+   "messages": [
+    {
+     "role": "system",
+     "content": "Be terse. Do not deliberate.\n1. Call `gifts` once with every requested item as \"store word\".\n2. Reply with the tool output only."
+    },
+    {
+     "role": "user",
+     "content": "Find one Christmas gift from real shopping websites: a tumbler (stanley)."
+    }
+   ]
+  }
+ },
+ {
+  "name": "echo-terse-1",
+  "body": {
+   "temperature": 1,
+   "reasoning_effort": "low",
+   "max_completion_tokens": 1024,
+   "tools": [
+    {
+     "type": "function",
+     "function": {
+      "name": "gifts",
+      "description": "Find gifts at real online stores, live. Each item is \"store word\", e.g. \"brooklinen robe\". Returns the top in-stock product per item, one line each: \"- title price URL\". Stores: stanley (tumblers, drinkware); brooklinen (robes, bedding, towels); allbirds (wool shoes, slippers); deathwish (coffee, mugs); leatherman (multitools, knives); ugmonk (desk organizers); puravida (bracelets, jewelry); colourpop (makeup); taylorstitch (menswear); kylie (cosmetics).",
+      "parameters": {
+       "type": "object",
+       "properties": {
+        "items": {
+         "type": "array",
+         "items": {
+          "type": "string"
+         }
+        }
+       },
+       "required": [
+        "items"
+       ],
+       "additionalProperties": false
+      }
+     }
+    }
+   ],
+   "messages": [
+    {
+     "role": "system",
+     "content": "Be terse. Do not deliberate.\n1. Call `gifts` once with every requested item as \"store word\".\n2. Reply with the tool output only."
+    },
+    {
+     "role": "user",
+     "content": "Find one Christmas gift from real shopping websites: a tumbler (stanley)."
+    },
+    {
+     "role": "assistant",
+     "content": "",
+     "tool_calls": [
+      {
+       "id": "call_0",
+       "type": "function",
+       "function": {
+        "name": "gifts",
+        "arguments": "{\"items\":[\"stanley tumbler\"]}"
+       }
+      }
+     ]
+    },
+    {
+     "role": "tool",
+     "tool_call_id": "call_0",
+     "content": "- The Everyday Tumbler, 20 OZ $26.25 https://www.stanley1913.com/products/the-everyday-tumbler-20-oz"
+    }
+   ]
+  }
+ },
+ {
+  "name": "call-terse-5",
+  "body": {
+   "temperature": 1,
+   "reasoning_effort": "low",
+   "max_completion_tokens": 1024,
+   "tools": [
+    {
+     "type": "function",
+     "function": {
+      "name": "gifts",
+      "description": "Find gifts at real online stores, live. Each item is \"store word\", e.g. \"brooklinen robe\". Returns the top in-stock product per item, one line each: \"- title price URL\". Stores: stanley (tumblers, drinkware); brooklinen (robes, bedding, towels); allbirds (wool shoes, slippers); deathwish (coffee, mugs); leatherman (multitools, knives); ugmonk (desk organizers); puravida (bracelets, jewelry); colourpop (makeup); taylorstitch (menswear); kylie (cosmetics).",
+      "parameters": {
+       "type": "object",
+       "properties": {
+        "items": {
+         "type": "array",
+         "items": {
+          "type": "string"
+         }
+        }
+       },
+       "required": [
+        "items"
+       ],
+       "additionalProperties": false
+      }
+     }
+    }
+   ],
+   "messages": [
+    {
+     "role": "system",
+     "content": "Be terse. Do not deliberate.\n1. Call `gifts` once with every requested item as \"store word\".\n2. Reply with the tool output only."
+    },
+    {
+     "role": "user",
+     "content": "Find five Christmas gifts from real shopping websites: a tumbler (stanley), a robe (brooklinen), a multitool (leatherman), a mug (deathwish), a bracelet (puravida)."
+    }
+   ]
+  }
+ },
+ {
+  "name": "echo-terse-5",
+  "body": {
+   "temperature": 1,
+   "reasoning_effort": "low",
+   "max_completion_tokens": 1024,
+   "tools": [
+    {
+     "type": "function",
+     "function": {
+      "name": "gifts",
+      "description": "Find gifts at real online stores, live. Each item is \"store word\", e.g. \"brooklinen robe\". Returns the top in-stock product per item, one line each: \"- title price URL\". Stores: stanley (tumblers, drinkware); brooklinen (robes, bedding, towels); allbirds (wool shoes, slippers); deathwish (coffee, mugs); leatherman (multitools, knives); ugmonk (desk organizers); puravida (bracelets, jewelry); colourpop (makeup); taylorstitch (menswear); kylie (cosmetics).",
+      "parameters": {
+       "type": "object",
+       "properties": {
+        "items": {
+         "type": "array",
+         "items": {
+          "type": "string"
+         }
+        }
+       },
+       "required": [
+        "items"
+       ],
+       "additionalProperties": false
+      }
+     }
+    }
+   ],
+   "messages": [
+    {
+     "role": "system",
+     "content": "Be terse. Do not deliberate.\n1. Call `gifts` once with every requested item as \"store word\".\n2. Reply with the tool output only."
+    },
+    {
+     "role": "user",
+     "content": "Find five Christmas gifts from real shopping websites: a tumbler (stanley), a robe (brooklinen), a multitool (leatherman), a mug (deathwish), a bracelet (puravida)."
+    },
+    {
+     "role": "assistant",
+     "content": "",
+     "tool_calls": [
+      {
+       "id": "call_0",
+       "type": "function",
+       "function": {
+        "name": "gifts",
+        "arguments": "{\"items\":[\"stanley tumbler\",\"brooklinen robe\",\"leatherman multitool\",\"deathwish mug\",\"puravida bracelet\"]}"
+       }
+      }
+     ]
+    },
+    {
+     "role": "tool",
+     "tool_call_id": "call_0",
+     "content": "- The Everyday Tumbler, 20 OZ $26.25 https://www.stanley1913.com/products/the-everyday-tumbler-20-oz\n- Super-Plush Robe $139.00 https://www.brooklinen.com/products/super-plush-robe\n- MUT® EOD $229.95 https://www.leatherman.com/products/mut-eod\n- Ride or Die Mug $38.00 https://www.deathwishcoffee.com/products/ride-or-die-mug\n- Solid Original $2.40 https://www.puravidabracelets.com/products/solid-original"
+    }
+   ]
+  }
+ },
+ {
+  "name": "call-nothink-1",
+  "body": {
+   "temperature": 1,
+   "reasoning_effort": "low",
+   "max_completion_tokens": 1024,
+   "tools": [
+    {
+     "type": "function",
+     "function": {
+      "name": "gifts",
+      "description": "Find gifts at real online stores, live. Each item is \"store word\", e.g. \"brooklinen robe\". Returns the top in-stock product per item, one line each: \"- title price URL\". Stores: stanley (tumblers, drinkware); brooklinen (robes, bedding, towels); allbirds (wool shoes, slippers); deathwish (coffee, mugs); leatherman (multitools, knives); ugmonk (desk organizers); puravida (bracelets, jewelry); colourpop (makeup); taylorstitch (menswear); kylie (cosmetics).",
+      "parameters": {
+       "type": "object",
+       "properties": {
+        "items": {
+         "type": "array",
+         "items": {
+          "type": "string"
+         }
+        }
+       },
+       "required": [
+        "items"
+       ],
+       "additionalProperties": false
+      }
+     }
+    }
+   ],
+   "messages": [
+    {
+     "role": "system",
+     "content": "Never think or reason: your output starts directly with the action.\nRequest -> call `gifts` at once with every requested item as \"store word\".\nTool output -> reply with it verbatim, nothing else."
+    },
+    {
+     "role": "user",
+     "content": "Find one Christmas gift from real shopping websites: a tumbler (stanley)."
+    }
+   ]
+  }
+ },
+ {
+  "name": "echo-nothink-1",
+  "body": {
+   "temperature": 1,
+   "reasoning_effort": "low",
+   "max_completion_tokens": 1024,
+   "tools": [
+    {
+     "type": "function",
+     "function": {
+      "name": "gifts",
+      "description": "Find gifts at real online stores, live. Each item is \"store word\", e.g. \"brooklinen robe\". Returns the top in-stock product per item, one line each: \"- title price URL\". Stores: stanley (tumblers, drinkware); brooklinen (robes, bedding, towels); allbirds (wool shoes, slippers); deathwish (coffee, mugs); leatherman (multitools, knives); ugmonk (desk organizers); puravida (bracelets, jewelry); colourpop (makeup); taylorstitch (menswear); kylie (cosmetics).",
+      "parameters": {
+       "type": "object",
+       "properties": {
+        "items": {
+         "type": "array",
+         "items": {
+          "type": "string"
+         }
+        }
+       },
+       "required": [
+        "items"
+       ],
+       "additionalProperties": false
+      }
+     }
+    }
+   ],
+   "messages": [
+    {
+     "role": "system",
+     "content": "Never think or reason: your output starts directly with the action.\nRequest -> call `gifts` at once with every requested item as \"store word\".\nTool output -> reply with it verbatim, nothing else."
+    },
+    {
+     "role": "user",
+     "content": "Find one Christmas gift from real shopping websites: a tumbler (stanley)."
+    },
+    {
+     "role": "assistant",
+     "content": "",
+     "tool_calls": [
+      {
+       "id": "call_0",
+       "type": "function",
+       "function": {
+        "name": "gifts",
+        "arguments": "{\"items\":[\"stanley tumbler\"]}"
+       }
+      }
+     ]
+    },
+    {
+     "role": "tool",
+     "tool_call_id": "call_0",
+     "content": "- The Everyday Tumbler, 20 OZ $26.25 https://www.stanley1913.com/products/the-everyday-tumbler-20-oz"
+    }
+   ]
+  }
+ },
+ {
+  "name": "call-nothink-5",
+  "body": {
+   "temperature": 1,
+   "reasoning_effort": "low",
+   "max_completion_tokens": 1024,
+   "tools": [
+    {
+     "type": "function",
+     "function": {
+      "name": "gifts",
+      "description": "Find gifts at real online stores, live. Each item is \"store word\", e.g. \"brooklinen robe\". Returns the top in-stock product per item, one line each: \"- title price URL\". Stores: stanley (tumblers, drinkware); brooklinen (robes, bedding, towels); allbirds (wool shoes, slippers); deathwish (coffee, mugs); leatherman (multitools, knives); ugmonk (desk organizers); puravida (bracelets, jewelry); colourpop (makeup); taylorstitch (menswear); kylie (cosmetics).",
+      "parameters": {
+       "type": "object",
+       "properties": {
+        "items": {
+         "type": "array",
+         "items": {
+          "type": "string"
+         }
+        }
+       },
+       "required": [
+        "items"
+       ],
+       "additionalProperties": false
+      }
+     }
+    }
+   ],
+   "messages": [
+    {
+     "role": "system",
+     "content": "Never think or reason: your output starts directly with the action.\nRequest -> call `gifts` at once with every requested item as \"store word\".\nTool output -> reply with it verbatim, nothing else."
+    },
+    {
+     "role": "user",
+     "content": "Find five Christmas gifts from real shopping websites: a tumbler (stanley), a robe (brooklinen), a multitool (leatherman), a mug (deathwish), a bracelet (puravida)."
+    }
+   ]
+  }
+ },
+ {
+  "name": "echo-nothink-5",
+  "body": {
+   "temperature": 1,
+   "reasoning_effort": "low",
+   "max_completion_tokens": 1024,
+   "tools": [
+    {
+     "type": "function",
+     "function": {
+      "name": "gifts",
+      "description": "Find gifts at real online stores, live. Each item is \"store word\", e.g. \"brooklinen robe\". Returns the top in-stock product per item, one line each: \"- title price URL\". Stores: stanley (tumblers, drinkware); brooklinen (robes, bedding, towels); allbirds (wool shoes, slippers); deathwish (coffee, mugs); leatherman (multitools, knives); ugmonk (desk organizers); puravida (bracelets, jewelry); colourpop (makeup); taylorstitch (menswear); kylie (cosmetics).",
+      "parameters": {
+       "type": "object",
+       "properties": {
+        "items": {
+         "type": "array",
+         "items": {
+          "type": "string"
+         }
+        }
+       },
+       "required": [
+        "items"
+       ],
+       "additionalProperties": false
+      }
+     }
+    }
+   ],
+   "messages": [
+    {
+     "role": "system",
+     "content": "Never think or reason: your output starts directly with the action.\nRequest -> call `gifts` at once with every requested item as \"store word\".\nTool output -> reply with it verbatim, nothing else."
+    },
+    {
+     "role": "user",
+     "content": "Find five Christmas gifts from real shopping websites: a tumbler (stanley), a robe (brooklinen), a multitool (leatherman), a mug (deathwish), a bracelet (puravida)."
+    },
+    {
+     "role": "assistant",
+     "content": "",
+     "tool_calls": [
+      {
+       "id": "call_0",
+       "type": "function",
+       "function": {
+        "name": "gifts",
+        "arguments": "{\"items\":[\"stanley tumbler\",\"brooklinen robe\",\"leatherman multitool\",\"deathwish mug\",\"puravida bracelet\"]}"
+       }
+      }
+     ]
+    },
+    {
+     "role": "tool",
+     "tool_call_id": "call_0",
+     "content": "- The Everyday Tumbler, 20 OZ $26.25 https://www.stanley1913.com/products/the-everyday-tumbler-20-oz\n- Super-Plush Robe $139.00 https://www.brooklinen.com/products/super-plush-robe\n- MUT® EOD $229.95 https://www.leatherman.com/products/mut-eod\n- Ride or Die Mug $38.00 https://www.deathwishcoffee.com/products/ride-or-die-mug\n- Solid Original $2.40 https://www.puravidabracelets.com/products/solid-original"
+    }
+   ]
+  }
+ },
+ {
+  "name": "call-example-1",
+  "body": {
+   "temperature": 1,
+   "reasoning_effort": "low",
+   "max_completion_tokens": 1024,
+   "tools": [
+    {
+     "type": "function",
+     "function": {
+      "name": "gifts",
+      "description": "Find gifts at real online stores, live. Each item is \"store word\", e.g. \"brooklinen robe\". Returns the top in-stock product per item, one line each: \"- title price URL\". Stores: stanley (tumblers, drinkware); brooklinen (robes, bedding, towels); allbirds (wool shoes, slippers); deathwish (coffee, mugs); leatherman (multitools, knives); ugmonk (desk organizers); puravida (bracelets, jewelry); colourpop (makeup); taylorstitch (menswear); kylie (cosmetics).",
+      "parameters": {
+       "type": "object",
+       "properties": {
+        "items": {
+         "type": "array",
+         "items": {
+          "type": "string"
+         }
+        }
+       },
+       "required": [
+        "items"
+       ],
+       "additionalProperties": false
+      }
+     }
+    }
+   ],
+   "messages": [
+    {
+     "role": "system",
+     "content": "Request -> call `gifts` at once. Tool output -> reply with it verbatim, nothing else. No reasoning.\nExample: \"a robe (brooklinen), a mug (deathwish)\" -> gifts({\"items\":[\"brooklinen robe\",\"deathwish mug\"]})"
+    },
+    {
+     "role": "user",
+     "content": "Find one Christmas gift from real shopping websites: a tumbler (stanley)."
+    }
+   ]
+  }
+ },
+ {
+  "name": "echo-example-1",
+  "body": {
+   "temperature": 1,
+   "reasoning_effort": "low",
+   "max_completion_tokens": 1024,
+   "tools": [
+    {
+     "type": "function",
+     "function": {
+      "name": "gifts",
+      "description": "Find gifts at real online stores, live. Each item is \"store word\", e.g. \"brooklinen robe\". Returns the top in-stock product per item, one line each: \"- title price URL\". Stores: stanley (tumblers, drinkware); brooklinen (robes, bedding, towels); allbirds (wool shoes, slippers); deathwish (coffee, mugs); leatherman (multitools, knives); ugmonk (desk organizers); puravida (bracelets, jewelry); colourpop (makeup); taylorstitch (menswear); kylie (cosmetics).",
+      "parameters": {
+       "type": "object",
+       "properties": {
+        "items": {
+         "type": "array",
+         "items": {
+          "type": "string"
+         }
+        }
+       },
+       "required": [
+        "items"
+       ],
+       "additionalProperties": false
+      }
+     }
+    }
+   ],
+   "messages": [
+    {
+     "role": "system",
+     "content": "Request -> call `gifts` at once. Tool output -> reply with it verbatim, nothing else. No reasoning.\nExample: \"a robe (brooklinen), a mug (deathwish)\" -> gifts({\"items\":[\"brooklinen robe\",\"deathwish mug\"]})"
+    },
+    {
+     "role": "user",
+     "content": "Find one Christmas gift from real shopping websites: a tumbler (stanley)."
+    },
+    {
+     "role": "assistant",
+     "content": "",
+     "tool_calls": [
+      {
+       "id": "call_0",
+       "type": "function",
+       "function": {
+        "name": "gifts",
+        "arguments": "{\"items\":[\"stanley tumbler\"]}"
+       }
+      }
+     ]
+    },
+    {
+     "role": "tool",
+     "tool_call_id": "call_0",
+     "content": "- The Everyday Tumbler, 20 OZ $26.25 https://www.stanley1913.com/products/the-everyday-tumbler-20-oz"
+    }
+   ]
+  }
+ },
+ {
+  "name": "call-example-5",
+  "body": {
+   "temperature": 1,
+   "reasoning_effort": "low",
+   "max_completion_tokens": 1024,
+   "tools": [
+    {
+     "type": "function",
+     "function": {
+      "name": "gifts",
+      "description": "Find gifts at real online stores, live. Each item is \"store word\", e.g. \"brooklinen robe\". Returns the top in-stock product per item, one line each: \"- title price URL\". Stores: stanley (tumblers, drinkware); brooklinen (robes, bedding, towels); allbirds (wool shoes, slippers); deathwish (coffee, mugs); leatherman (multitools, knives); ugmonk (desk organizers); puravida (bracelets, jewelry); colourpop (makeup); taylorstitch (menswear); kylie (cosmetics).",
+      "parameters": {
+       "type": "object",
+       "properties": {
+        "items": {
+         "type": "array",
+         "items": {
+          "type": "string"
+         }
+        }
+       },
+       "required": [
+        "items"
+       ],
+       "additionalProperties": false
+      }
+     }
+    }
+   ],
+   "messages": [
+    {
+     "role": "system",
+     "content": "Request -> call `gifts` at once. Tool output -> reply with it verbatim, nothing else. No reasoning.\nExample: \"a robe (brooklinen), a mug (deathwish)\" -> gifts({\"items\":[\"brooklinen robe\",\"deathwish mug\"]})"
+    },
+    {
+     "role": "user",
+     "content": "Find five Christmas gifts from real shopping websites: a tumbler (stanley), a robe (brooklinen), a multitool (leatherman), a mug (deathwish), a bracelet (puravida)."
+    }
+   ]
+  }
+ },
+ {
+  "name": "echo-example-5",
+  "body": {
+   "temperature": 1,
+   "reasoning_effort": "low",
+   "max_completion_tokens": 1024,
+   "tools": [
+    {
+     "type": "function",
+     "function": {
+      "name": "gifts",
+      "description": "Find gifts at real online stores, live. Each item is \"store word\", e.g. \"brooklinen robe\". Returns the top in-stock product per item, one line each: \"- title price URL\". Stores: stanley (tumblers, drinkware); brooklinen (robes, bedding, towels); allbirds (wool shoes, slippers); deathwish (coffee, mugs); leatherman (multitools, knives); ugmonk (desk organizers); puravida (bracelets, jewelry); colourpop (makeup); taylorstitch (menswear); kylie (cosmetics).",
+      "parameters": {
+       "type": "object",
+       "properties": {
+        "items": {
+         "type": "array",
+         "items": {
+          "type": "string"
+         }
+        }
+       },
+       "required": [
+        "items"
+       ],
+       "additionalProperties": false
+      }
+     }
+    }
+   ],
+   "messages": [
+    {
+     "role": "system",
+     "content": "Request -> call `gifts` at once. Tool output -> reply with it verbatim, nothing else. No reasoning.\nExample: \"a robe (brooklinen), a mug (deathwish)\" -> gifts({\"items\":[\"brooklinen robe\",\"deathwish mug\"]})"
+    },
+    {
+     "role": "user",
+     "content": "Find five Christmas gifts from real shopping websites: a tumbler (stanley), a robe (brooklinen), a multitool (leatherman), a mug (deathwish), a bracelet (puravida)."
+    },
+    {
+     "role": "assistant",
+     "content": "",
+     "tool_calls": [
+      {
+       "id": "call_0",
+       "type": "function",
+       "function": {
+        "name": "gifts",
+        "arguments": "{\"items\":[\"stanley tumbler\",\"brooklinen robe\",\"leatherman multitool\",\"deathwish mug\",\"puravida bracelet\"]}"
+       }
+      }
+     ]
+    },
+    {
+     "role": "tool",
+     "tool_call_id": "call_0",
+     "content": "- The Everyday Tumbler, 20 OZ $26.25 https://www.stanley1913.com/products/the-everyday-tumbler-20-oz\n- Super-Plush Robe $139.00 https://www.brooklinen.com/products/super-plush-robe\n- MUT® EOD $229.95 https://www.leatherman.com/products/mut-eod\n- Ride or Die Mug $38.00 https://www.deathwishcoffee.com/products/ride-or-die-mug\n- Solid Original $2.40 https://www.puravidabracelets.com/products/solid-original"
+    }
+   ]
+  }
+ },
+ {
+  "name": "echo-terse-2",
+  "body": {
+   "temperature": 1,
+   "reasoning_effort": "low",
+   "max_completion_tokens": 1024,
+   "tools": [
+    {
+     "type": "function",
+     "function": {
+      "name": "gifts",
+      "description": "Find gifts at real online stores, live. Each item is \"store word\", e.g. \"brooklinen robe\". Returns the top in-stock product per item, one line each: \"- title price URL\". Stores: stanley (tumblers, drinkware); brooklinen (robes, bedding, towels); allbirds (wool shoes, slippers); deathwish (coffee, mugs); leatherman (multitools, knives); ugmonk (desk organizers); puravida (bracelets, jewelry); colourpop (makeup); taylorstitch (menswear); kylie (cosmetics).",
+      "parameters": {
+       "type": "object",
+       "properties": {
+        "items": {
+         "type": "array",
+         "items": {
+          "type": "string"
+         }
+        }
+       },
+       "required": [
+        "items"
+       ],
+       "additionalProperties": false
+      }
+     }
+    }
+   ],
+   "messages": [
+    {
+     "role": "system",
+     "content": "Be terse. Do not deliberate.\n1. Call `gifts` once with every requested item as \"store word\".\n2. Reply with the tool output only."
+    },
+    {
+     "role": "user",
+     "content": "Find two Christmas gifts from real shopping websites: a tumbler (stanley), a robe (brooklinen)."
+    },
+    {
+     "role": "assistant",
+     "content": "",
+     "tool_calls": [
+      {
+       "id": "call_0",
+       "type": "function",
+       "function": {
+        "name": "gifts",
+        "arguments": "{\"items\":[\"stanley tumbler\",\"brooklinen robe\"]}"
+       }
+      }
+     ]
+    },
+    {
+     "role": "tool",
+     "tool_call_id": "call_0",
+     "content": "- The Everyday Tumbler, 20 OZ $26.25 https://www.stanley1913.com/products/the-everyday-tumbler-20-oz\n- Super-Plush Robe $139.00 https://www.brooklinen.com/products/super-plush-robe"
+    }
+   ]
+  }
+ },
+ {
+  "name": "echo-terse-3",
+  "body": {
+   "temperature": 1,
+   "reasoning_effort": "low",
+   "max_completion_tokens": 1024,
+   "tools": [
+    {
+     "type": "function",
+     "function": {
+      "name": "gifts",
+      "description": "Find gifts at real online stores, live. Each item is \"store word\", e.g. \"brooklinen robe\". Returns the top in-stock product per item, one line each: \"- title price URL\". Stores: stanley (tumblers, drinkware); brooklinen (robes, bedding, towels); allbirds (wool shoes, slippers); deathwish (coffee, mugs); leatherman (multitools, knives); ugmonk (desk organizers); puravida (bracelets, jewelry); colourpop (makeup); taylorstitch (menswear); kylie (cosmetics).",
+      "parameters": {
+       "type": "object",
+       "properties": {
+        "items": {
+         "type": "array",
+         "items": {
+          "type": "string"
+         }
+        }
+       },
+       "required": [
+        "items"
+       ],
+       "additionalProperties": false
+      }
+     }
+    }
+   ],
+   "messages": [
+    {
+     "role": "system",
+     "content": "Be terse. Do not deliberate.\n1. Call `gifts` once with every requested item as \"store word\".\n2. Reply with the tool output only."
+    },
+    {
+     "role": "user",
+     "content": "Find three Christmas gifts from real shopping websites: a tumbler (stanley), a robe (brooklinen), a multitool (leatherman)."
+    },
+    {
+     "role": "assistant",
+     "content": "",
+     "tool_calls": [
+      {
+       "id": "call_0",
+       "type": "function",
+       "function": {
+        "name": "gifts",
+        "arguments": "{\"items\":[\"stanley tumbler\",\"brooklinen robe\",\"leatherman multitool\"]}"
+       }
+      }
+     ]
+    },
+    {
+     "role": "tool",
+     "tool_call_id": "call_0",
+     "content": "- The Everyday Tumbler, 20 OZ $26.25 https://www.stanley1913.com/products/the-everyday-tumbler-20-oz\n- Super-Plush Robe $139.00 https://www.brooklinen.com/products/super-plush-robe\n- MUT® EOD $229.95 https://www.leatherman.com/products/mut-eod"
+    }
+   ]
+  }
+ }
+]

@@ -1,0 +1,233 @@
+[
+ {
+  "name": "len8-noeffort",
+  "body": {
+   "messages": [
+    {
+     "role": "user",
+     "content": "one word: say \"ok\""
+    }
+   ],
+   "max_completion_tokens": 8,
+   "temperature": 1
+  }
+ },
+ {
+  "name": "len40-noeffort",
+  "body": {
+   "messages": [
+    {
+     "role": "user",
+     "content": "List 5 gift ideas, 3 words each."
+    }
+   ],
+   "max_completion_tokens": 40,
+   "temperature": 1
+  }
+ },
+ {
+  "name": "len150-noeffort",
+  "body": {
+   "messages": [
+    {
+     "role": "user",
+     "content": "Write a detailed Christmas gift guide of about 100 words. Plain prose, no preamble."
+    }
+   ],
+   "max_completion_tokens": 150,
+   "temperature": 1
+  }
+ },
+ {
+  "name": "len600-noeffort",
+  "body": {
+   "messages": [
+    {
+     "role": "user",
+     "content": "Write a detailed Christmas gift guide of about 400 words. Plain prose, no preamble."
+    }
+   ],
+   "max_completion_tokens": 600,
+   "temperature": 1
+  }
+ },
+ {
+  "name": "len2500-noeffort",
+  "body": {
+   "messages": [
+    {
+     "role": "user",
+     "content": "Write a detailed Christmas gift guide of about 1800 words. Plain prose, no preamble."
+    }
+   ],
+   "max_completion_tokens": 2500,
+   "temperature": 1
+  }
+ },
+ {
+  "name": "len8000-noeffort",
+  "body": {
+   "messages": [
+    {
+     "role": "user",
+     "content": "Write a detailed Christmas gift guide of about 6000 words. Plain prose, no preamble."
+    }
+   ],
+   "max_completion_tokens": 8000,
+   "temperature": 1
+  }
+ },
+ {
+  "name": "effort-low-600",
+  "body": {
+   "messages": [
+    {
+     "role": "user",
+     "content": "Write a detailed Christmas gift guide of about 400 words. Plain prose, no preamble."
+    }
+   ],
+   "max_completion_tokens": 4000,
+   "temperature": 1,
+   "reasoning_effort": "low"
+  }
+ },
+ {
+  "name": "effort-medium-600",
+  "body": {
+   "messages": [
+    {
+     "role": "user",
+     "content": "Write a detailed Christmas gift guide of about 400 words. Plain prose, no preamble."
+    }
+   ],
+   "max_completion_tokens": 4000,
+   "temperature": 1,
+   "reasoning_effort": "medium"
+  }
+ },
+ {
+  "name": "effort-high-600",
+  "body": {
+   "messages": [
+    {
+     "role": "user",
+     "content": "Write a detailed Christmas gift guide of about 400 words. Plain prose, no preamble."
+    }
+   ],
+   "max_completion_tokens": 4000,
+   "temperature": 1,
+   "reasoning_effort": "high"
+  }
+ },
+ {
+  "name": "effort-max-600",
+  "body": {
+   "messages": [
+    {
+     "role": "user",
+     "content": "Write a detailed Christmas gift guide of about 400 words. Plain prose, no preamble."
+    }
+   ],
+   "max_completion_tokens": 4000,
+   "temperature": 1,
+   "reasoning_effort": "max"
+  }
+ },
+ {
+  "name": "tool-1call",
+  "body": {
+   "messages": [
+    {
+     "role": "user",
+     "content": "Fetch https://www.allbirds.com/products.json?limit=5 using the tool."
+    }
+   ],
+   "tools": [
+    {
+     "type": "function",
+     "function": {
+      "name": "web_fetch",
+      "description": "Fetch a URL and return its content.",
+      "parameters": {
+       "type": "object",
+       "properties": {
+        "url": {
+         "type": "string"
+        }
+       },
+       "required": [
+        "url"
+       ]
+      }
+     }
+    }
+   ],
+   "temperature": 1
+  }
+ },
+ {
+  "name": "tool-5calls",
+  "body": {
+   "messages": [
+    {
+     "role": "user",
+     "content": "Fetch these five URLs in parallel with the tool, all in one turn: https://www.allbirds.com/products.json?limit=3 https://bombas.com/products.json?limit=3 https://www.gymshark.com/products.json?limit=3 https://www.deathwishcoffee.com/products.json?limit=3 https://www.tentree.com/products.json?limit=3"
+    }
+   ],
+   "tools": [
+    {
+     "type": "function",
+     "function": {
+      "name": "web_fetch",
+      "description": "Fetch a URL and return its content.",
+      "parameters": {
+       "type": "object",
+       "properties": {
+        "url": {
+         "type": "string"
+        }
+       },
+       "required": [
+        "url"
+       ]
+      }
+     }
+    }
+   ],
+   "temperature": 1
+  }
+ },
+ {
+  "name": "tool-5calls-low",
+  "body": {
+   "messages": [
+    {
+     "role": "user",
+     "content": "Fetch these five URLs in parallel with the tool, all in one turn: https://www.allbirds.com/products.json?limit=3 https://bombas.com/products.json?limit=3 https://www.gymshark.com/products.json?limit=3 https://www.deathwishcoffee.com/products.json?limit=3 https://www.tentree.com/products.json?limit=3"
+    }
+   ],
+   "tools": [
+    {
+     "type": "function",
+     "function": {
+      "name": "web_fetch",
+      "description": "Fetch a URL and return its content.",
+      "parameters": {
+       "type": "object",
+       "properties": {
+        "url": {
+         "type": "string"
+        }
+       },
+       "required": [
+        "url"
+       ]
+      }
+     }
+    }
+   ],
+   "temperature": 1,
+   "reasoning_effort": "low"
+  }
+ }
+]

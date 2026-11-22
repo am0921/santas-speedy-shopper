@@ -1,0 +1,7 @@
+{
+  "name": "openclaw-santa-shop",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Live product search across real retail storefronts for OpenClaw agents",
+  "openclaw": { "extensions": ["./index.js"] }
+}

@@ -1,0 +1,22 @@
+{
+  "id": "santa-shop",
+  "name": "Santa Shop",
+  "description": "Live product search across real retail storefronts",
+  "categories": [
+    "other"
+  ],
+  "contracts": {
+    "tools": [
+      "shop",
+      "gift",
+      "gifts"
+    ]
+  },
+  "activation": {
+    "onStartup": true
+  },
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false
+  }
+}

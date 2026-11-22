@@ -1,0 +1,476 @@
+[
+ {
+  "name": "cap004",
+  "body": {
+   "messages": [
+    {
+     "role": "user",
+     "content": "Write a detailed Christmas gift guide of about 400 words. Plain prose, no preamble."
+    }
+   ],
+   "max_completion_tokens": 4,
+   "temperature": 1
+  }
+ },
+ {
+  "name": "cap012",
+  "body": {
+   "messages": [
+    {
+     "role": "user",
+     "content": "Write a detailed Christmas gift guide of about 400 words. Plain prose, no preamble."
+    }
+   ],
+   "max_completion_tokens": 12,
+   "temperature": 1
+  }
+ },
+ {
+  "name": "cap016",
+  "body": {
+   "messages": [
+    {
+     "role": "user",
+     "content": "Write a detailed Christmas gift guide of about 400 words. Plain prose, no preamble."
+    }
+   ],
+   "max_completion_tokens": 16,
+   "temperature": 1
+  }
+ },
+ {
+  "name": "cap020",
+  "body": {
+   "messages": [
+    {
+     "role": "user",
+     "content": "Write a detailed Christmas gift guide of about 400 words. Plain prose, no preamble."
+    }
+   ],
+   "max_completion_tokens": 20,
+   "temperature": 1
+  }
+ },
+ {
+  "name": "cap024",
+  "body": {
+   "messages": [
+    {
+     "role": "user",
+     "content": "Write a detailed Christmas gift guide of about 400 words. Plain prose, no preamble."
+    }
+   ],
+   "max_completion_tokens": 24,
+   "temperature": 1
+  }
+ },
+ {
+  "name": "cap028",
+  "body": {
+   "messages": [
+    {
+     "role": "user",
+     "content": "Write a detailed Christmas gift guide of about 400 words. Plain prose, no preamble."
+    }
+   ],
+   "max_completion_tokens": 28,
+   "temperature": 1
+  }
+ },
+ {
+  "name": "cap032",
+  "body": {
+   "messages": [
+    {
+     "role": "user",
+     "content": "Write a detailed Christmas gift guide of about 400 words. Plain prose, no preamble."
+    }
+   ],
+   "max_completion_tokens": 32,
+   "temperature": 1
+  }
+ },
+ {
+  "name": "cap048",
+  "body": {
+   "messages": [
+    {
+     "role": "user",
+     "content": "Write a detailed Christmas gift guide of about 400 words. Plain prose, no preamble."
+    }
+   ],
+   "max_completion_tokens": 48,
+   "temperature": 1
+  }
+ },
+ {
+  "name": "cap064",
+  "body": {
+   "messages": [
+    {
+     "role": "user",
+     "content": "Write a detailed Christmas gift guide of about 400 words. Plain prose, no preamble."
+    }
+   ],
+   "max_completion_tokens": 64,
+   "temperature": 1
+  }
+ },
+ {
+  "name": "cap096",
+  "body": {
+   "messages": [
+    {
+     "role": "user",
+     "content": "Write a detailed Christmas gift guide of about 400 words. Plain prose, no preamble."
+    }
+   ],
+   "max_completion_tokens": 96,
+   "temperature": 1
+  }
+ },
+ {
+  "name": "ok-noeffort",
+  "body": {
+   "messages": [
+    {
+     "role": "user",
+     "content": "Reply with exactly: OK"
+    }
+   ],
+   "temperature": 1
+  }
+ },
+ {
+  "name": "ok-low",
+  "body": {
+   "messages": [
+    {
+     "role": "user",
+     "content": "Reply with exactly: OK"
+    }
+   ],
+   "temperature": 1,
+   "reasoning_effort": "low"
+  }
+ },
+ {
+  "name": "ok-sys-nothink",
+  "body": {
+   "messages": [
+    {
+     "role": "system",
+     "content": "Never think or deliberate. Answer immediately with the final answer only."
+    },
+    {
+     "role": "user",
+     "content": "Reply with exactly: OK"
+    }
+   ],
+   "temperature": 1
+  }
+ },
+ {
+  "name": "tc0-noeffort",
+  "body": {
+   "messages": [
+    {
+     "role": "user",
+     "content": "Find a Christmas gift. Use the tool."
+    }
+   ],
+   "tools": [
+    {
+     "type": "function",
+     "function": {
+      "name": "find_gifts",
+      "description": "Search real retail sites for Christmas gifts and return live products.",
+      "parameters": {
+       "type": "object",
+       "properties": {},
+       "required": []
+      }
+     }
+    }
+   ],
+   "temperature": 1
+  }
+ },
+ {
+  "name": "tc0-low",
+  "body": {
+   "messages": [
+    {
+     "role": "user",
+     "content": "Find a Christmas gift. Use the tool."
+    }
+   ],
+   "tools": [
+    {
+     "type": "function",
+     "function": {
+      "name": "find_gifts",
+      "description": "Search real retail sites for Christmas gifts and return live products.",
+      "parameters": {
+       "type": "object",
+       "properties": {},
+       "required": []
+      }
+     }
+    }
+   ],
+   "temperature": 1,
+   "reasoning_effort": "low"
+  }
+ },
+ {
+  "name": "tc0-required",
+  "body": {
+   "messages": [
+    {
+     "role": "user",
+     "content": "Find a Christmas gift. Use the tool."
+    }
+   ],
+   "tools": [
+    {
+     "type": "function",
+     "function": {
+      "name": "find_gifts",
+      "description": "Search real retail sites for Christmas gifts and return live products.",
+      "parameters": {
+       "type": "object",
+       "properties": {},
+       "required": []
+      }
+     }
+    }
+   ],
+   "temperature": 1,
+   "tool_choice": "required"
+  }
+ },
+ {
+  "name": "tc0-forced",
+  "body": {
+   "messages": [
+    {
+     "role": "user",
+     "content": "Find a Christmas gift. Use the tool."
+    }
+   ],
+   "tools": [
+    {
+     "type": "function",
+     "function": {
+      "name": "find_gifts",
+      "description": "Search real retail sites for Christmas gifts and return live products.",
+      "parameters": {
+       "type": "object",
+       "properties": {},
+       "required": []
+      }
+     }
+    }
+   ],
+   "temperature": 1,
+   "tool_choice": {
+    "type": "function",
+    "function": {
+     "name": "find_gifts"
+    }
+   }
+  }
+ },
+ {
+  "name": "tc0-sys-nothink",
+  "body": {
+   "messages": [
+    {
+     "role": "system",
+     "content": "Never think or deliberate. Call the tool immediately."
+    },
+    {
+     "role": "user",
+     "content": "Find a Christmas gift. Use the tool."
+    }
+   ],
+   "tools": [
+    {
+     "type": "function",
+     "function": {
+      "name": "find_gifts",
+      "description": "Search real retail sites for Christmas gifts and return live products.",
+      "parameters": {
+       "type": "object",
+       "properties": {},
+       "required": []
+      }
+     }
+    }
+   ],
+   "temperature": 1
+  }
+ },
+ {
+  "name": "tc1-noeffort",
+  "body": {
+   "messages": [
+    {
+     "role": "user",
+     "content": "Find a Christmas gift. Use the tool."
+    }
+   ],
+   "tools": [
+    {
+     "type": "function",
+     "function": {
+      "name": "find_gifts",
+      "description": "Search real retail sites for Christmas gifts and return live products.",
+      "parameters": {
+       "type": "object",
+       "properties": {
+        "q": {
+         "type": "string"
+        }
+       },
+       "required": [
+        "q"
+       ]
+      }
+     }
+    }
+   ],
+   "temperature": 1
+  }
+ },
+ {
+  "name": "tc1-sys-nothink",
+  "body": {
+   "messages": [
+    {
+     "role": "system",
+     "content": "Never think or deliberate. Call the tool immediately."
+    },
+    {
+     "role": "user",
+     "content": "Find a Christmas gift. Use the tool."
+    }
+   ],
+   "tools": [
+    {
+     "type": "function",
+     "function": {
+      "name": "find_gifts",
+      "description": "Search real retail sites for Christmas gifts and return live products.",
+      "parameters": {
+       "type": "object",
+       "properties": {
+        "q": {
+         "type": "string"
+        }
+       },
+       "required": [
+        "q"
+       ]
+      }
+     }
+    }
+   ],
+   "temperature": 1
+  }
+ },
+ {
+  "name": "off-none",
+  "body": {
+   "messages": [
+    {
+     "role": "user",
+     "content": "Reply with exactly: OK"
+    }
+   ],
+   "temperature": 1,
+   "reasoning_effort": "none"
+  }
+ },
+ {
+  "name": "off-minimal",
+  "body": {
+   "messages": [
+    {
+     "role": "user",
+     "content": "Reply with exactly: OK"
+    }
+   ],
+   "temperature": 1,
+   "reasoning_effort": "minimal"
+  }
+ },
+ {
+  "name": "off-fmt-hidden",
+  "body": {
+   "messages": [
+    {
+     "role": "user",
+     "content": "Reply with exactly: OK"
+    }
+   ],
+   "temperature": 1,
+   "reasoning_format": "hidden"
+  }
+ },
+ {
+  "name": "off-fmt-none",
+  "body": {
+   "messages": [
+    {
+     "role": "user",
+     "content": "Reply with exactly: OK"
+    }
+   ],
+   "temperature": 1,
+   "reasoning_format": "none"
+  }
+ },
+ {
+  "name": "off-disable_reasoning",
+  "body": {
+   "messages": [
+    {
+     "role": "user",
+     "content": "Reply with exactly: OK"
+    }
+   ],
+   "temperature": 1,
+   "disable_reasoning": true
+  }
+ },
+ {
+  "name": "off-thinking-disabled",
+  "body": {
+   "messages": [
+    {
+     "role": "user",
+     "content": "Reply with exactly: OK"
+    }
+   ],
+   "temperature": 1,
+   "thinking": {
+    "type": "disabled"
+   }
+  }
+ },
+ {
+  "name": "off-enable_thinking-false",
+  "body": {
+   "messages": [
+    {
+     "role": "user",
+     "content": "Reply with exactly: OK"
+    }
+   ],
+   "temperature": 1,
+   "enable_thinking": false
+  }
+ }
+]

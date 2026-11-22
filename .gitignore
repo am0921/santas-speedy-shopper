@@ -1,0 +1,18 @@
+# secrets and local state
+.env
+state/
+logs/
+# third-party checkouts (created by setup.sh)
+openclaw/
+vendor/
+node_modules/
+# scratch
+lab/
+research/
+workspace/
+ws/
+record/out/
+record/explore/
+record/explore*.mjs
+.claude/
+.DS_Store

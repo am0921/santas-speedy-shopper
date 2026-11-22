@@ -123,6 +123,7 @@ function probe() {
     badgeText: badge?.textContent?.trim() ?? null,
     summaryText: summary?.textContent?.trim() ?? null,
     badgeTitle: badge?.getAttribute("title") ?? null,
+    retrying: /Retrying/.test(document.querySelector(".chat-group--working, .chat-working, main")?.textContent ?? ""),
     summaryTitle: summary?.getAttribute("title") ?? null,
     liveText: live?.textContent?.trim() ?? null,
     running: stop || working || !!live,
@@ -137,7 +138,7 @@ async function attempt(i, browser) {
   const name = `rec-${Date.now().toString(36)}`;
   const tmpDir = join(outRoot, `.tmp-${name}`);
   mkdirSync(tmpDir, { recursive: true });
-  const result = { ok: false, agent, createMode, startedAt, prompt, sessionKey: null, url: null, badgeText: null, summaryText: null, meanTps: null, p90Tps: null, answerText: "", links: [], calls: [], durationMs: null, error: null };
+  const result = { ok: false, sawRetry: false, agent, createMode, startedAt, prompt, sessionKey: null, url: null, badgeText: null, summaryText: null, meanTps: null, p90Tps: null, answerText: "", links: [], calls: [], durationMs: null, error: null };
   let sessionKey = `agent:${agent}:${name}`;
   if (createMode === "rpc") {
     sessionKey = createSession(sessionKey);
@@ -186,6 +187,7 @@ async function attempt(i, browser) {
       await sleep(250);
       const s = await page.evaluate(probe);
       if (s.running) sawRunning = true;
+      if (s.retrying) result.sawRetry = true;
       const done = !s.running && s.badgeText && s.assistantGroups > 0;
       const same = last && last.badgeText === s.badgeText && last.answerText === s.answerText;
       if (done && same) {

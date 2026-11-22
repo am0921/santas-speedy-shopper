@@ -16,3 +16,4 @@ record/explore/
 record/explore*.mjs
 .claude/
 .DS_Store
+SUBMISSION.md

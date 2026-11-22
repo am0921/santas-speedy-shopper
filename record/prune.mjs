@@ -12,4 +12,6 @@ runs.slice(keep).forEach(({ d }) => {
   for (const f of ["video.mp4", "video.webm"]) if (existsSync(join(out, d, f))) unlinkSync(join(out, d, f));
 });
 const ok = runs.filter((x) => x.r.ok);
+const clean = ok.filter((x) => x.r.sawRetry === false && x.r.calls?.length === 3);
+console.log(`clean (no provider retry on screen, 3 calls): ${clean.length}, top: ${clean.slice(0, 5).map((x) => `${Math.round(x.r.meanTps)} (${x.d})`).join(", ")}`);
 console.log(`attempts=${runs.length} ok=${ok.length} top: ${ok.slice(0, 5).map((x) => `${Math.round(x.r.meanTps)} (${x.d})`).join(", ")}`);
